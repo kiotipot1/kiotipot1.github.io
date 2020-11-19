@@ -1,0 +1,31 @@
+<template>
+  <app-layout>
+    <template #header>
+      <div style=".btn{ padding-left:20px;}">
+        <button class="btn btn-secondary">qwe</button>
+        <button class="btn btn-secondary">qwe</button>
+        <button class="btn btn-secondary">qwe</button>
+      </div>
+    </template>
+
+    <div class="py-12">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+         
+        </div>
+      </div>
+    </div>
+  </app-layout>
+</template>
+
+<script>
+import AppLayout from "@/Layouts/AppLayout";
+import Welcome from "@/Jetstream/Welcome";
+
+export default {
+  components: {
+    AppLayout,
+    Welcome,
+  },
+};
+</script>
