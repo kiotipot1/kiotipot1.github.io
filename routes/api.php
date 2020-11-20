@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MajorAccountGroup1Controller;
+use App\Http\Controllers\SubMajorAccountGroupController;
+use App\Http\Controllers\GeneralLedgerAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('chartofaccounts','App\Http\Controllers\ChartOfAccountsController');
-Route::apiResource('generalledgeraccount','App\Http\Controllers\GeneralLedgerAccountController');
-Route::apiResource('majoraccountgroup','App\Http\Controllers\MajorAccountGroupController');
-Route::apiResource('submajoraccountgroup','App\Http\Controllers\SubMajorAccountGroupController');
+
+Route::resource('major-account-group', MajorAccountGroup1Controller::class);
+Route::resource('sub-major-account-group', SubMajorAccountGroupController::class);
+Route::resource('general-ledger-account', GeneralLedgerAccountController::class);

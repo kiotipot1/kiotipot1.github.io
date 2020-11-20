@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralLedgerAccountModel extends Model
 {
     use HasFactory;
+    
+    public $timestamps = false;
+    protected $table = 'general_ledger_account';
     protected $fillable = [
         'general_ledger_account_name',
     ];

@@ -34,11 +34,11 @@ class ChartOfAccountsController extends Controller
 
         ]);
         $chart_of_account=new ChartOfAccountsModel();
-        $chart_of_account->general_ledger_account = $request->general_ledger_account_id;
+        $chart_of_account->general_ledger_account_id = $request->general_ledger_account_id;
         $chart_of_account->acount_group = $request->major_acacount_groupcount_group;
         $chart_of_account->current_noncurrent = $request->current_noncurrent;
-        $chart_of_account->major_account_group = $request->major_account_group;
-        $chart_of_account->sub_major_account_group = $request->sub_major_account_group;
+        $chart_of_account->major_account_group_id = $request->major_account_group;
+        $chart_of_account->sub_major_account_group_id= $request->sub_major_account_group;
         $chart_of_account->save();
         
         response('Successfuly added the data',201);

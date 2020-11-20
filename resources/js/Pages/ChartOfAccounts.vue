@@ -67,24 +67,26 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form @submit.prevent="addSubMajorAccountGroup">
-                  <div class="form-group">
-                    <label for="SubMajorAccountGroup"></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="
-                        sub_major_account_group.sub_major_account_group_name
-                      "
-                      name="SubMajorAccountGroup"
-                      aria-describedby="helpId"
-                      placeholder="SubMajorAccountGroup"
-                    />
-                  </div>
-                  <button class="btn btn-primary d-flex ml-auto" type="submit">
-                    Save
-                  </button>
-                </form>
+                <div class="form-group">
+                  <label for="SubMajorAccountGroup"></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="
+                      sub_major_account_group.sub_major_account_group_name
+                    "
+                    name="SubMajorAccountGroup"
+                    aria-describedby="helpId"
+                    placeholder="SubMajorAccountGroup"
+                  />
+                </div>
+                <button
+                  class="btn btn-primary d-flex ml-auto"
+                  type="button"
+                  @click="addSubMajorAccountGroup"
+                >
+                  Save
+                </button>
               </div>
             </div>
           </div>
@@ -112,24 +114,24 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form @submit.prevent="addGeneralLedgerAccount">
-                  <div class="form-group">
-                    <label for="GeneralLedgerAccount"></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="
-                        general_ledger_account.general_ledger_account_name
-                      "
-                      name="GeneralLedgerAccount"
-                      aria-describedby="helpId"
-                      placeholder="GeneralLedgerAccount"
-                    />
-                  </div>
-                  <button class="btn btn-primary d-flex ml-auto" type="submit">
-                    Save
-                  </button>
-                </form>
+                <div class="form-group">
+                  <label for="GeneralLedgerAccount"></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="general_ledger_account.general_ledger_account_name"
+                    name="GeneralLedgerAccount"
+                    aria-describedby="helpId"
+                    placeholder="GeneralLedgerAccount"
+                  />
+                </div>
+                <button
+                  class="btn btn-primary d-flex ml-auto"
+                  type="button"
+                  @click="addGeneralLedgerAccount"
+                >
+                  Save
+                </button>
               </div>
             </div>
           </div>
@@ -156,22 +158,24 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form @submit.prevent="addMajorAccountGroup()">
-                  <div class="form-group">
-                    <label for="MajorAccountGroup"></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="major_account_group.major_account_group_name"
-                      name="MajorAccountGroup"
-                      aria-describedby="helpId"
-                      placeholder="MajorAccountGroup"
-                    />
-                  </div>
-                  <button class="btn btn-primary d-flex ml-auto" type="submit">
-                    Save
-                  </button>
-                </form>
+                <div class="form-group">
+                  <label for="MajorAccountGroup"></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="major_account_group.major_account_group_name"
+                    name="MajorAccountGroup"
+                    aria-describedby="helpId"
+                    placeholder="MajorAccountGroup"
+                  />
+                </div>
+                <button
+                  @click="addMajorAccountGroup"
+                  class="btn btn-primary d-flex ml-auto"
+                  type="button"
+                >
+                  Save
+                </button>
               </div>
             </div>
           </div>
@@ -202,7 +206,7 @@
               </div>
 
               <div class="modal-body">
-                <form @submit.prevent="addChartOfAccounts">
+                <form @submit.prevent="addChartOfAccounts()">
                   <div class="form-group">
                     <label for="GeneralLedgerAccount"></label>
                     <select
@@ -258,6 +262,19 @@
                       <option value=""></option>
                     </select>
                   </div>
+
+                  <div class="d-flex">
+                    <button
+                      type="button"
+                      class="btn btn-secondary ml-auto"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button class="btn btn-primary d-flex" type="submit">
+                      Save
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -273,21 +290,20 @@
             <th scope="col">ID</th>
             <th scope="col">General Ledger Acount</th>
             <th scope="col">Account Group</th>
-            <th scope="col">Handle</th>
-            <th scope="col">Handle</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Current/Noncurrent</th>
+            <th scope="col">Major Account Group</th>
+            <th scope="col">Sub Najor Account Group</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-             <td>Otto</td>
-            <td>@mdo</td>
+          <tr v-for="chart in chart_of_accounts" :key="chart.id">
+            <td>{{ chart.id }}</td>
+            <td>{{ chart.general_ledger_account_id }}</td>
+            <td>{{ chart.account_group }}</td>
+            <td>{{ chart.current_noncurrent }}</td>
+            <td>{{ chart.major_account_group_id }}</td>
+            <td>{{ chart.sub_major_account_group_id }}</td>
           </tr>
-          
         </tbody>
       </table>
     </div>
@@ -347,40 +363,99 @@ export default {
       }
     },
     async addGeneralLedgerAccount() {
-      const res = await axios.post(
-        "/api/generalledgeraccount",
-        this.general_ledger_account
-      );
-      if (res.status === 201) {
-        Toast.fire({
-          icon: "success",
-          title: res.data,
-        });
+      try {
+        const res = await axios.post(
+          "api/general-ledger-account",
+          this.general_ledger_account
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+        }
+      } catch (e) {
+        console.log(e);
       }
     },
     async addMajorAccountGroup() {
-      const res = await axios.post(
-        "/api/majoraccountgroup",
-        this.major_account_group
-      );
-      if (res.status === 201) {
-        Toast.fire({
-          icon: "success",
-          title: res.data,
-        });
+      console.log(this.major_account_group);
+      try {
+        const res = await axios.post(
+          "api/major-account-group",
+          this.major_account_group
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+        }
+      } catch (e) {
+        console.log(e);
       }
     },
+
     async addSubMajorAccountGroup() {
-      const res = await axios.post(
-        "/api/submajoraccountgroup",
-        this.sub_major_account_group
-      );
-      if (res.status === 201) {
-        Toast.fire({
-          icon: "success",
-          title: res.data,
-        });
+      try {
+        const res = await axios.post(
+          "api/sub-major-account-group",
+          this.sub_major_account_group
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+        }
+      } catch (e) {
+        console.log(e);
       }
+    },
+
+    //get data functions
+    async getChartOfAccounts() {
+      const res = await axios
+        .get("/api/chartofaccounts")
+        .then((res) => {
+          this.chart_of_accounts = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async getGeneralLedgerAccount() {
+      const res = await axios
+        .get("/api/generalledgeraccount")
+        .then((res) => {
+          this.general_ledger_accounts = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async getMajorAccountGroup() {
+      const res = await axios
+        .get("/api/majoraccountgroup")
+        .then((res) => {
+          this.major_account_groups = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    async getSubMajorAccountGroup() {
+      const res = await axios
+        .get("/api/submajoraccountgroup")
+        .then((res) => {
+          this.sub_major_account_groups = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

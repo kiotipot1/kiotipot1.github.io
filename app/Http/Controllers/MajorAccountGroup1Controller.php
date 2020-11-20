@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GeneralLedgerAccountModel;
+use App\Models\MajorAccountGroupModel;
 use Illuminate\Http\Request;
 
-class GeneralLedgerAccountController extends Controller
+class MajorAccountGroup1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class GeneralLedgerAccountController extends Controller
      */
     public function index()
     {
-        return GeneralLedgerAccountModel::all();
+        return MajorAccountGroupModel::all();
     }
 
     /**
@@ -36,23 +36,24 @@ class GeneralLedgerAccountController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'general_ledger_account_name' => 'required',
+            'major_account_group_name' => 'required|string',
 
         ]);
-        $general_ledger_account = new GeneralLedgerAccountModel();
-        $general_ledger_account->general_ledger_account_name = $request->general_ledger_account_name;
-        $general_ledger_account->save();
+        $major_account_group = new MajorAccountGroupModel();
+        $major_account_group->major_account_name = $request->major_account_group_name;
 
-        return response('Successfuly added the data', 201);
+        $major_account_group->save();
+
+         return response('Successfuly added the data', 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\GeneralLedgerAccountModel  $generalLedgerAccountModel
+     * @param  \App\Models\MajorAccountGroupModel  $majorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function show(GeneralLedgerAccountModel $generalLedgerAccountModel)
+    public function show(MajorAccountGroupModel $majorAccountGroupModel)
     {
         //
     }
@@ -60,10 +61,10 @@ class GeneralLedgerAccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\GeneralLedgerAccountModel  $generalLedgerAccountModel
+     * @param  \App\Models\MajorAccountGroupModel  $majorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(GeneralLedgerAccountModel $generalLedgerAccountModel)
+    public function edit(MajorAccountGroupModel $majorAccountGroupModel)
     {
         //
     }
@@ -72,10 +73,10 @@ class GeneralLedgerAccountController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\GeneralLedgerAccountModel  $generalLedgerAccountModel
+     * @param  \App\Models\MajorAccountGroupModel  $majorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GeneralLedgerAccountModel $generalLedgerAccountModel)
+    public function update(Request $request, MajorAccountGroupModel $majorAccountGroupModel)
     {
         //
     }
@@ -83,10 +84,10 @@ class GeneralLedgerAccountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\GeneralLedgerAccountModel  $generalLedgerAccountModel
+     * @param  \App\Models\MajorAccountGroupModel  $majorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GeneralLedgerAccountModel $generalLedgerAccountModel)
+    public function destroy(MajorAccountGroupModel $majorAccountGroupModel)
     {
         //
     }

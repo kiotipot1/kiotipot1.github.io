@@ -31,11 +31,11 @@ class MajorAccountGroupController extends Controller
 
         ]);
         $major_account_group=new MajorAccountGroupModel();
-        $major_account_group->major_account_group_name= $request->major_account_group_name;
-     
+        $major_account_group->major_account_name= $request->major_account_group_name;
+        
         $major_account_group->save();
         
-        response('Successfuly added the data',201);
+        response('Successfuly added the data', 201);
     }
 
     /**

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChartOfAccountsModel extends Model
 {
+    
+    public $timestamps = false;
+    protected $table = 'sub_major_account_group';
     protected $fillable = [
         'general_ledger_account_id',
         'account_group',

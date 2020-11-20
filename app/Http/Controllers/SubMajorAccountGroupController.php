@@ -18,6 +18,16 @@ class SubMajorAccountGroupController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -27,24 +37,34 @@ class SubMajorAccountGroupController extends Controller
     {
         $this->validate($request, [
             'sub_major_account_group_name' => 'required',
-            
+
 
         ]);
         $sub_major_account_group = new SubMajorAccountGroupModel();
-        $sub_major_account_group->sub_major_account_group_name = $request->sub_majsub_major_account_group_nameor_account_group;
-
+        $sub_major_account_group->sub_major_account_name = $request->sub_major_account_group_name;
         $sub_major_account_group->save();
 
-        response('Successfuly added the data', 201);
+         return response('Successfuly added the data', 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\SubMajorAccountGroupModel  $subMajorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SubMajorAccountGroupModel $subMajorAccountGroupModel)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\SubMajorAccountGroupModel  $subMajorAccountGroupModel
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(SubMajorAccountGroupModel $subMajorAccountGroupModel)
     {
         //
     }
@@ -53,10 +73,10 @@ class SubMajorAccountGroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\SubMajorAccountGroupModel  $subMajorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SubMajorAccountGroupModel $subMajorAccountGroupModel)
     {
         //
     }
@@ -64,10 +84,10 @@ class SubMajorAccountGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\SubMajorAccountGroupModel  $subMajorAccountGroupModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SubMajorAccountGroupModel $subMajorAccountGroupModel)
     {
         //
     }

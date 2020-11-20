@@ -3175,6 +3175,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3857,6 +3859,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3928,11 +3946,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return axios.post("/api/generalledgeraccount", _this2.general_ledger_account);
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios.post("api/general-ledger-account", _this2.general_ledger_account);
 
-              case 2:
+              case 3:
                 res = _context2.sent;
+                console.log(res);
 
                 if (res.status === 201) {
                   Toast.fire({
@@ -3941,12 +3961,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 4:
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 8]]);
       }))();
     },
     addMajorAccountGroup: function addMajorAccountGroup() {
@@ -3958,11 +3986,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return axios.post("/api/majoraccountgroup", _this3.major_account_group);
+                console.log(_this3.major_account_group);
+                _context3.prev = 1;
+                _context3.next = 4;
+                return axios.post("api/major-account-group", _this3.major_account_group);
 
-              case 2:
+              case 4:
                 res = _context3.sent;
+                console.log(res);
 
                 if (res.status === 201) {
                   Toast.fire({
@@ -3971,12 +4002,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 4:
+                _context3.next = 12;
+                break;
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](1);
+                console.log(_context3.t0);
+
+              case 12:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3);
+        }, _callee3, null, [[1, 9]]);
       }))();
     },
     addSubMajorAccountGroup: function addSubMajorAccountGroup() {
@@ -3988,11 +4027,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return axios.post("/api/submajoraccountgroup", _this4.sub_major_account_group);
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios.post("api/sub-major-account-group", _this4.sub_major_account_group);
 
-              case 2:
+              case 3:
                 res = _context4.sent;
+                console.log(res);
 
                 if (res.status === 201) {
                   Toast.fire({
@@ -4001,12 +4042,129 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 4:
+                _context4.next = 11;
+                break;
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                console.log(_context4.t0);
+
+              case 11:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4);
+        }, _callee4, null, [[0, 8]]);
+      }))();
+    },
+    //get data functions
+    getChartOfAccounts: function getChartOfAccounts() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios.get("/api/chartofaccounts").then(function (res) {
+                  _this5.chart_of_accounts = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context5.sent;
+
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    getGeneralLedgerAccount: function getGeneralLedgerAccount() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return axios.get("/api/generalledgeraccount").then(function (res) {
+                  _this6.general_ledger_accounts = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context6.sent;
+
+              case 3:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    getMajorAccountGroup: function getMajorAccountGroup() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return axios.get("/api/majoraccountgroup").then(function (res) {
+                  _this7.major_account_groups = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context7.sent;
+
+              case 3:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    getSubMajorAccountGroup: function getSubMajorAccountGroup() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.next = 2;
+                return axios.get("/api/submajoraccountgroup").then(function (res) {
+                  _this8.sub_major_account_groups = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context8.sent;
+
+              case 3:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
       }))();
     }
   }
@@ -68909,7 +69067,7 @@ var render = function() {
     "div",
     { staticClass: "min-h-screen bg-gray-100" },
     [
-      _c("nav", { staticClass: "bg-white border-b border-gray-100" }, [
+      _c("nav", { staticClass: "bg-gray-500 border-b border-gray-100" }, [
         _c("div", { staticClass: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" }, [
           _c("div", { staticClass: "flex justify-between h-16" }, [
             _c("div", { staticClass: "flex" }, [
@@ -68938,6 +69096,7 @@ var render = function() {
                   _c(
                     "jet-nav-link",
                     {
+                      staticClass: "text-white",
                       attrs: {
                         href: _vm.route("dashboard"),
                         active: _vm.route().current("dashboard")
@@ -68949,6 +69108,7 @@ var render = function() {
                   _c(
                     "jet-nav-link",
                     {
+                      staticClass: "text-white",
                       attrs: {
                         href: _vm.route("chartofaccounts"),
                         active: _vm.route().current("chartofaccounts")
@@ -70401,75 +70561,58 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", {
+                                attrs: { for: "SubMajorAccountGroup" }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.sub_major_account_group
+                                        .sub_major_account_group_name,
+                                    expression:
+                                      "\n                    sub_major_account_group.sub_major_account_group_name\n                  "
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "SubMajorAccountGroup",
+                                  "aria-describedby": "helpId",
+                                  placeholder: "SubMajorAccountGroup"
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.sub_major_account_group
+                                      .sub_major_account_group_name
+                                },
                                 on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.addSubMajorAccountGroup($event)
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.sub_major_account_group,
+                                      "sub_major_account_group_name",
+                                      $event.target.value
+                                    )
                                   }
                                 }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary d-flex ml-auto",
+                                attrs: { type: "button" },
+                                on: { click: _vm.addSubMajorAccountGroup }
                               },
-                              [
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c("label", {
-                                    attrs: { for: "SubMajorAccountGroup" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value:
-                                          _vm.sub_major_account_group
-                                            .sub_major_account_group_name,
-                                        expression:
-                                          "\n                      sub_major_account_group.sub_major_account_group_name\n                    "
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "SubMajorAccountGroup",
-                                      "aria-describedby": "helpId",
-                                      placeholder: "SubMajorAccountGroup"
-                                    },
-                                    domProps: {
-                                      value:
-                                        _vm.sub_major_account_group
-                                          .sub_major_account_group_name
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.sub_major_account_group,
-                                          "sub_major_account_group_name",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-primary d-flex ml-auto",
-                                    attrs: { type: "submit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                  Save\n                "
-                                    )
-                                  ]
-                                )
-                              ]
+                              [_vm._v("\n                Save\n              ")]
                             )
                           ])
                         ])
@@ -70522,75 +70665,58 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", {
+                                attrs: { for: "GeneralLedgerAccount" }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.general_ledger_account
+                                        .general_ledger_account_name,
+                                    expression:
+                                      "general_ledger_account.general_ledger_account_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "GeneralLedgerAccount",
+                                  "aria-describedby": "helpId",
+                                  placeholder: "GeneralLedgerAccount"
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.general_ledger_account
+                                      .general_ledger_account_name
+                                },
                                 on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.addGeneralLedgerAccount($event)
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.general_ledger_account,
+                                      "general_ledger_account_name",
+                                      $event.target.value
+                                    )
                                   }
                                 }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary d-flex ml-auto",
+                                attrs: { type: "button" },
+                                on: { click: _vm.addGeneralLedgerAccount }
                               },
-                              [
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c("label", {
-                                    attrs: { for: "GeneralLedgerAccount" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value:
-                                          _vm.general_ledger_account
-                                            .general_ledger_account_name,
-                                        expression:
-                                          "\n                      general_ledger_account.general_ledger_account_name\n                    "
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "GeneralLedgerAccount",
-                                      "aria-describedby": "helpId",
-                                      placeholder: "GeneralLedgerAccount"
-                                    },
-                                    domProps: {
-                                      value:
-                                        _vm.general_ledger_account
-                                          .general_ledger_account_name
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.general_ledger_account,
-                                          "general_ledger_account_name",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-primary d-flex ml-auto",
-                                    attrs: { type: "submit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                  Save\n                "
-                                    )
-                                  ]
-                                )
-                              ]
+                              [_vm._v("\n                Save\n              ")]
                             )
                           ])
                         ])
@@ -70643,75 +70769,58 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", {
+                                attrs: { for: "MajorAccountGroup" }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.major_account_group
+                                        .major_account_group_name,
+                                    expression:
+                                      "major_account_group.major_account_group_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "MajorAccountGroup",
+                                  "aria-describedby": "helpId",
+                                  placeholder: "MajorAccountGroup"
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.major_account_group
+                                      .major_account_group_name
+                                },
                                 on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.addMajorAccountGroup()
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.major_account_group,
+                                      "major_account_group_name",
+                                      $event.target.value
+                                    )
                                   }
                                 }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary d-flex ml-auto",
+                                attrs: { type: "button" },
+                                on: { click: _vm.addMajorAccountGroup }
                               },
-                              [
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c("label", {
-                                    attrs: { for: "MajorAccountGroup" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value:
-                                          _vm.major_account_group
-                                            .major_account_group_name,
-                                        expression:
-                                          "major_account_group.major_account_group_name"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "MajorAccountGroup",
-                                      "aria-describedby": "helpId",
-                                      placeholder: "MajorAccountGroup"
-                                    },
-                                    domProps: {
-                                      value:
-                                        _vm.major_account_group
-                                          .major_account_group_name
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.major_account_group,
-                                          "major_account_group_name",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-primary d-flex ml-auto",
-                                    attrs: { type: "submit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                  Save\n                "
-                                    )
-                                  ]
-                                )
-                              ]
+                              [_vm._v("\n                Save\n              ")]
                             )
                           ])
                         ])
@@ -70774,7 +70883,7 @@ var render = function() {
                                 on: {
                                   submit: function($event) {
                                     $event.preventDefault()
-                                    return _vm.addChartOfAccounts($event)
+                                    return _vm.addChartOfAccounts()
                                   }
                                 }
                               },
@@ -70917,6 +71026,37 @@ var render = function() {
                                       _c("option", { attrs: { value: "" } })
                                     ]
                                   )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "d-flex" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-secondary ml-auto",
+                                      attrs: {
+                                        type: "button",
+                                        "data-dismiss": "modal"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                    Close\n                  "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary d-flex",
+                                      attrs: { type: "submit" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                    Save\n                  "
+                                      )
+                                    ]
+                                  )
                                 ])
                               ]
                             )
@@ -70947,29 +71087,39 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { scope: "col" } }, [_vm._v("Account Group")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Handle")]),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Current/Noncurrent")
+              ]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Handle")]),
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Major Account Group")
+              ]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Handle")])
+              _c("th", { attrs: { scope: "col" } }, [
+                _vm._v("Sub Najor Account Group")
+              ])
             ])
           ]),
           _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Mark")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Otto")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("@mdo")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Otto")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("@mdo")])
-            ])
-          ])
+          _c(
+            "tbody",
+            _vm._l(_vm.chart_of_accounts, function(chart) {
+              return _c("tr", { key: chart.id }, [
+                _c("td", [_vm._v(_vm._s(chart.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(chart.general_ledger_account_id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(chart.account_group))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(chart.current_noncurrent))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(chart.major_account_group_id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(chart.sub_major_account_group_id))])
+              ])
+            }),
+            0
+          )
         ])
       ]),
       _vm._v(" "),
