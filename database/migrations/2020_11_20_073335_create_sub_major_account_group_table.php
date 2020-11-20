@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Chartofaccounts extends Migration
+class CreateSubMajorAccountGroupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class Chartofaccounts extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sub_major_account_group', function (Blueprint $table) {
+            $table->id();
+            $table->string('sub_major_account_name');
+        });
     }
 
     /**
@@ -23,6 +26,6 @@ class Chartofaccounts extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sub_major_account_group');
     }
 }

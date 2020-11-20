@@ -10,6 +10,5 @@ class MajorAccountGroupModel extends Model
     use HasFactory;
     protected $fillable = [
         'major_account_name',
-       
     ];
 }
