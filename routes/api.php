@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('chartofaccounts','App\Http\Controllers\ChartOfAccountsController');
+Route::apiResource('generalledgeraccount','App\Http\Controllers\GeneralLedgerAccountController');
+Route::apiResource('majoraccountgroup','App\Http\Controllers\MajorAccountGroupController');
+Route::apiResource('submajoraccountgroup','App\Http\Controllers\SubMajorAccountGroupController');

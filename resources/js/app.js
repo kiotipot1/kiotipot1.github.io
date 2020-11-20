@@ -8,6 +8,14 @@ import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 
+const Swal = require('sweetalert2').default
+window.Toast = Swal.mixin({
+    toast: true,
+   position: 'top-end',
+   timer: 3000,
+   timerProgressBar: true
+})
+
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
