@@ -66,7 +66,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/Budget/MasterRecords/prog
     return Inertia\Inertia::render('Budget/MasterRecords/ProgramCodes');
 })->name('program-codes');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/Budget/MasterRecords/MasterRecordsfund-source', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/Budget/MasterRecords/fund-source', function () {
     return Inertia\Inertia::render('Budget/MasterRecords/FundSource');
 })->name('fund-source');
 

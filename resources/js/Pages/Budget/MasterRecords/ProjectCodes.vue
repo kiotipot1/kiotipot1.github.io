@@ -31,9 +31,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" >
-                  New Cluster Code
-                </h5>
+                <h5 class="modal-title">New Cluster Code</h5>
                 <button
                   type="button"
                   class="close"
@@ -46,31 +44,60 @@
               <div class="modal-body">
                 <form
                   @submit.prevent="addProjectCodes()"
-                  id="AuthorizationCode_form"
+                  id="project_code_form"
                 >
+                  
                   <div class="form-group">
-                    <label for="ProjectCodes">Fund Category and Classification Code </label>
+                    <label for="ProjectCodes"
+                      >MFO/PAP ID
+                    </label>
                     <input
                       type="text"
                       class="form-control"
-                      v-model="project_code.mfo_pap_code"
+                      v-model="project_code.mfo_id"
                       name="AuthorizationCode"
-                      aria-describedby="helpId"
-                      placeholder="Authorization Code"
+                      aria-describedby="helpId" 
+                      placeholder="MFO/PAP ID"
                     />
                   </div>
-                  <div class="form-group">
+                    <div class="form-group">
+                    <label for="description">MFO/PAP Code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="project_code.mfo_code"
+                      name="MFO/PAP Shortname"
+                      aria-describedby="helpId"
+                      placeholder="MFO/PAP Code"
+                    />
+                  </div>
+
+                  
+                   <div class="form-group">
                     <label for="description">MFO/PAP Shortname</label>
                     <input
                       type="text"
                       class="form-control"
-                      v-model="project_code.mfo_pap_shortname"
+                      v-model="project_code.mfo_shortname"
                       name="MFO/PAP Shortname"
                       aria-describedby="helpId"
-                      placeholder="description"
+                      placeholder="MFO/PAP Shortname"
                     />
                   </div>
 
+                  <div class="form-group">
+                    <label for="description">MFO/PAP description</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="project_code.mfo_description"
+                      name="MFO/PAP Shortname"
+                      aria-describedby="helpId"
+                      placeholder="MFO/PAP description"
+                    />
+                  </div>
+
+                 
                   <div class="flex">
                     <button
                       type="button"
@@ -79,7 +106,7 @@
                     >
                       Close
                     </button>
-                    <button class="btn btn-primary" type="button">Save</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                   </div>
                 </form>
               </div>
@@ -88,6 +115,7 @@
         </div>
         <!-- ADD MajorAccountGroup MODAL-->
       </div>
+      <h4 class="ml-auto">MFO/PAP Codes</h4>
     </template>
     <!-- Table -->
     <div class="px-6">
@@ -102,10 +130,10 @@
         </thead>
         <tbody>
           <tr v-for="pc in project_codes" :key="pc.id">
-            <td>{{ pc.id }}</td>
-            <td>{{ pc.mfo_pap_code }}</td>
-            <td>{{ pc.mfo_pap_shortname }}</td>
-            <td>{{ pc.mfo_pap }}</td>
+            <td>{{ pc.mfo_id }}</td>
+            <td>{{ pc.mfo_code }}</td>
+            <td>{{ pc.mfo_shortname }}</td>
+            <td>{{ pc.mfo_description }}</td>
           </tr>
         </tbody>
       </table>
@@ -116,6 +144,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"></div>
       </div>
     </div>
+    
   </app-layout>
 </template>
 
@@ -132,55 +161,52 @@ export default {
     return {
       project_codes: [],
       project_code: {
-
-        mfo_pap_code:0,
-        mfo_pap_shortname: "",
-        mfo_pap:""
+        mfo_id:"",
+        mfo_code: "",
+        mfo_shortname: "",
+        mfo_description: "",
       },
     };
   },
-  // methods: {
-  //   async addProjectCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/project-codes,
-  //         this.project_code
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("project_code_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedProjectCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
+  methods: {
+    async addProjectCodes() {
+      try {
+        const res = await axios.post("/api/project-code", this.project_code);
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+          document.getElementById("project_code_form").reset;
+          $("#ChartOfAccount").modal("hide");
+          Fire.$emit("addedProjectCode");
+        }
+      } catch (e) {
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
+      }
+    },
 
-  //   async getProjectCode() {
-  //     const res = await axios
-  //       .get("/api/project-codes")
-  //       .then((res) => {
-  //         this.project-code = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getProjectCode(),
-
-  //     Fire.$on("addProjectCode", () => {
-  //       this.getProjectCode();
-  //     });
-  // },
+    async getProjectCode() {
+      const res = await axios
+        .get("/api/project-code")
+        .then((res) => {
+          this.project_codes = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    this.getProjectCode(),
+      Fire.$on("addedProjectCode", () => {
+        this.getProjectCode();
+      });
+  },
 };
 </script>
+

@@ -3315,6 +3315,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3347,6 +3455,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   }
+});
+$(document).ready(function () {
+  $(".dropdown-submenu a.test").on("click", function (e) {
+    $(this).next("ul").toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
 });
 
 /***/ }),
@@ -4047,6 +4162,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4056,13 +4192,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      enable_disable: ["enable", "disable"],
       chart_of_accounts: [],
       chart_of_account: {
-        general_ledger_account: 0,
+        general_ledger_account: "",
         account_group: "",
         current_noncurrent: "",
-        major_account_group: 0,
-        sub_major_account_group: 0
+        major_account_group: "",
+        sub_major_account_group: "",
+        enable_disable: ""
       },
       general_ledger_accounts: [],
       general_ledger_account: {
@@ -4543,6 +4681,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4796,107 +4935,129 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      allotment_classes: [],
+      allotment_class: {
+        allotment_id: "",
+        uacs_code: "",
+        allotment_class: ""
+      }
+    };
+  },
+  methods: {
+    addAllotmentClass: function addAllotmentClass() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log(_this.allotment_class);
+                _context.prev = 1;
+                _context.next = 4;
+                return axios.post("/api/allotment-class", _this.allotment_class);
+
+              case 4:
+                res = _context.sent;
+                console.log(res);
+
+                if (res.status === 201) {
+                  Toast.fire({
+                    icon: "success",
+                    title: res.data
+                  });
+                  document.getElementById("allotment_class_form").reset;
+                  $("#ChartOfAccount").modal("hide");
+                  Fire.$emit("addedAllotmentClass");
+                }
+
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+                Toast.fire({
+                  icon: "error",
+                  title: _context.t0
+                });
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 9]]);
+      }))();
+    },
+    getAllotmentClass: function getAllotmentClass() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/allotment-class").then(function (res) {
+                  _this2.allotment_classes = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context2.sent;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    this.getAllotmentClass(), Fire.$on("addedAllotmentClass", function () {
+      _this3.getAllotmentClass();
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Budget/MasterRecords/AuthorizationCodes.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Budget/MasterRecords/AuthorizationCodes.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -5026,30 +5187,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      chart_of_accounts: [],
-      chart_of_account: {
-        general_ledger_account: 0,
-        account_group: "",
-        current_noncurrent: "",
-        major_account_group: 0,
-        sub_major_account_group: 0
-      },
-      general_ledger_accounts: [],
-      general_ledger_account: {
-        general_ledger_account_name: ""
-      },
-      major_account_groups: [],
-      major_account_group: {
-        major_account_group_name: ""
-      },
-      sub_major_account_groups: [],
-      sub_major_account_group: {
-        sub_major_account_group_name: ""
+      authorization_codes: [],
+      authorization_code: {
+        authorization_code: 0,
+        description: ""
       }
     };
   },
   methods: {
-    addChartOfAccounts: function addChartOfAccounts() {
+    addAuthorizationCode: function addAuthorizationCode() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -5060,7 +5206,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios.post("api/chart-of-account", _this.chart_of_account);
+                return axios.post("/api/authorization-code", _this.authorization_code);
 
               case 3:
                 res = _context.sent;
@@ -5071,9 +5217,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     icon: "success",
                     title: res.data
                   });
-                  document.getElementById("chart_of_accounts_form").reset;
+                  document.getElementById("authorization_code_form").reset;
                   $("#ChartOfAccount").modal("hide");
-                  Fire.$emit("addedChart");
+                  Fire.$emit("addedAuthorizationCode");
                 }
 
                 _context.next = 11;
@@ -5095,7 +5241,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[0, 8]]);
       }))();
     },
-    addGeneralLedgerAccount: function addGeneralLedgerAccount() {
+    getAuthorizationCode: function getAuthorizationCode() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -5104,453 +5250,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
-                return axios.post("api/general-ledger-account", _this2.general_ledger_account);
-
-              case 3:
-                res = _context2.sent;
-                console.log(res);
-
-                if (res.status === 201) {
-                  Toast.fire({
-                    icon: "success",
-                    title: res.data
-                  });
-                  document.getElementById("general_ledger_accounts_form").reset;
-                  $("#GeneralLedgerAccount").modal("hide");
-                  Fire.$emit("addedGeneralLedgerAccount");
-                }
-
-                _context2.next = 12;
-                break;
-
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
-                Toast.fire({
-                  icon: "error",
-                  title: _context2.t0
+                _context2.next = 2;
+                return axios.get("/api/authorization-code").then(function (res) {
+                  _this2.authorization_codes = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
                 });
 
-              case 12:
+              case 2:
+                res = _context2.sent;
+
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
-      }))();
-    },
-    addMajorAccountGroup: function addMajorAccountGroup() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
-                return axios.post("api/major-account-group", _this3.major_account_group);
-
-              case 3:
-                res = _context3.sent;
-                console.log(res);
-
-                if (res.status === 201) {
-                  Toast.fire({
-                    icon: "success",
-                    title: res.data
-                  });
-                  document.getElementById("major_account_group_form").reset;
-                  $("#MajorAccountGroup").modal("hide");
-                  Fire.$emit("addedMajorAccountGroup");
-                }
-
-                _context3.next = 12;
-                break;
-
-              case 8:
-                _context3.prev = 8;
-                _context3.t0 = _context3["catch"](0);
-                console.log(_context3.t0);
-                Toast.fire({
-                  icon: "error",
-                  title: _context3.t0
-                });
-
-              case 12:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, null, [[0, 8]]);
-      }))();
-    },
-    addSubMajorAccountGroup: function addSubMajorAccountGroup() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.prev = 0;
-                _context4.next = 3;
-                return axios.post("api/sub-major-account-group", _this4.sub_major_account_group);
-
-              case 3:
-                res = _context4.sent;
-                console.log(res);
-
-                if (res.status === 201) {
-                  Toast.fire({
-                    icon: "success",
-                    title: res.data
-                  });
-                  document.getElementById("sub_major_account_group_form").reset;
-                  $("#SubMajorAccountGroup").modal("hide");
-                  Fire.$emit("addedSubMajorAccountGroup");
-                }
-
-                _context4.next = 12;
-                break;
-
-              case 8:
-                _context4.prev = 8;
-                _context4.t0 = _context4["catch"](0);
-                console.log(_context4.t0);
-                Toast.fire({
-                  icon: "error",
-                  title: _context4.t0
-                });
-
-              case 12:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, null, [[0, 8]]);
-      }))();
-    },
-    //get data functions
-    getChartOfAccounts: function getChartOfAccounts() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return axios.get("/api/chart-of-account").then(function (res) {
-                  _this5.chart_of_accounts = res.data;
-                  console.log(_this5.chart_of_accounts);
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context5.sent;
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    getGeneralLedgerAccount: function getGeneralLedgerAccount() {
-      var _this6 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _context6.next = 2;
-                return axios.get("/api/general-ledger-account").then(function (res) {
-                  _this6.general_ledger_accounts = res.data;
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context6.sent;
-
-              case 3:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }))();
-    },
-    getMajorAccountGroup: function getMajorAccountGroup() {
-      var _this7 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                _context7.next = 2;
-                return axios.get("/api/major-account-group").then(function (res) {
-                  _this7.major_account_groups = res.data;
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context7.sent;
-
-              case 3:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }))();
-    },
-    getSubMajorAccountGroup: function getSubMajorAccountGroup() {
-      var _this8 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                _context8.next = 2;
-                return axios.get("/api/sub-major-account-group").then(function (res) {
-                  _this8.sub_major_account_groups = res.data;
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context8.sent;
-
-              case 3:
-              case "end":
-                return _context8.stop();
-            }
-          }
-        }, _callee8);
+        }, _callee2);
       }))();
     }
   },
   created: function created() {
-    var _this9 = this;
+    var _this3 = this;
 
-    this.getChartOfAccounts(), this.getGeneralLedgerAccount(), this.getMajorAccountGroup(), this.getSubMajorAccountGroup(), Fire.$on("addedChart", function () {
-      _this9.getChartOfAccounts();
-    });
-    Fire.$on("addedGeneralLedgerAccount", function () {
-      _this9.getGeneralLedgerAccount();
-    });
-    Fire.$on("addedMajorAccountGroup", function () {
-      _this9.getMajorAccountGroup();
-    }), Fire.$on("addedSubMajorAccountGroup", function () {
-      _this9.getSubMajorAccountGroup();
+    this.getAuthorizationCode(), Fire.$on("addedAuthorizationCode", function () {
+      _this3.getAuthorizationCode();
     });
   }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Budget/MasterRecords/AuthorizationCodes.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Budget/MasterRecords/AuthorizationCodes.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      authorization_codes: [],
-      authorization_code: {
-        authorization_code: 0,
-        description: ""
-      }
-    };
-  } // methods: {
-  //   async addAuthorizationCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/authorization-codes,
-  //         this.authorization_code
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("authorization_code_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedAuthorizationCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
-  //   async getAuthorizationCode() {
-  //     const res = await axios
-  //       .get("/api/authorization-codes")
-  //       .then((res) => {
-  //         this.authorization-code = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getAuthorizationCode(),
-  //     Fire.$on("addedAuthorizationCode", () => {
-  //       this.getAuthorizationCode();
-  //     });
-  // },
-
 });
 
 /***/ }),
@@ -5804,9 +5529,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -5956,60 +5688,103 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       FCCCodes: [],
       FCCCode: {
-        fccc_code: 0,
+        fund_category_id: 0,
         description: "",
+        fund_category_code: "",
         nsacs: ""
       }
     };
-  } // methods: {
-  //   async addFCCCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/fund-category-cluster-codes,
-  //         this.FCCCode
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("FCCCodes_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedFCCCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
-  //   async getFCCCodes() {
-  //     const res = await axios
-  //       .get("/api/remittance")
-  //       .then((res) => {
-  //         this.FCCCodes = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getFCCCodes(),
-  //     Fire.$on("addedFCCCode", () => {
-  //       this.getFCCCodes();
-  //     });
-  // },
+  },
+  methods: {
+    addFCCCode: function addFCCCode() {
+      var _this = this;
 
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post("/api/fund-category-cluster-code", _this.FCCCode);
+
+              case 3:
+                res = _context.sent;
+                console.log(res);
+
+                if (res.status === 201) {
+                  Toast.fire({
+                    icon: "success",
+                    title: res.data
+                  });
+                  document.getElementById("FCCCodes_form").reset;
+                  $("#ChartOfAccount").modal("hide");
+                  Fire.$emit("addedFCCCode");
+                }
+
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                Toast.fire({
+                  icon: "error",
+                  title: _context.t0
+                });
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
+    },
+    getFCCCodes: function getFCCCodes() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/fund-category-cluster-code").then(function (res) {
+                  _this2.FCCCodes = res.data;
+                  console.log(_this2.FCCCodes);
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context2.sent;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    this.getFCCCodes(), Fire.$on("addedFCCCode", function () {
+      _this3.getFCCCodes();
+    });
+  }
 });
 
 /***/ }),
@@ -6151,6 +5926,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6162,7 +5938,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       fund_cluster_codes: [],
       fund_cluster_code: {
-        fund_cluster_code_id: 0,
+        fund_cluster_code: "",
         description: ""
       }
     };
@@ -6191,8 +5967,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     icon: "success",
                     title: res.data
                   });
-                  document.getElementById("fund_cluster_code_form").reset;
-                  $("#ChartOfAccount").modal("hide");
+                  document.getElementById("fund_cluster_code_form").reset();
+                  $("#FundClusterCode").modal("hide");
                   Fire.$emit("addedFundClusterCode");
                 }
 
@@ -6263,8 +6039,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6390,60 +6186,102 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
-      project_codes: [],
-      project_code: {
-        mfo_pap_code: 0,
-        mfo_pap_shortname: "",
-        mfo_pap: ""
+      fund_sources: [],
+      fund_source: {
+        fund_source_id: "",
+        fund_source: "",
+        fund_source_description: ""
       }
     };
-  } // methods: {
-  //   async addProjectCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/project-codes,
-  //         this.project_code
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("project_code_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedProjectCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
-  //   async getProjectCode() {
-  //     const res = await axios
-  //       .get("/api/project-codes")
-  //       .then((res) => {
-  //         this.project-code = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getProjectCode(),
-  //     Fire.$on("addProjectCode", () => {
-  //       this.getProjectCode();
-  //     });
-  // },
+  },
+  methods: {
+    addFundSource: function addFundSource() {
+      var _this = this;
 
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log(_this.fund_source);
+                _context.prev = 1;
+                _context.next = 4;
+                return axios.post("/api/fund-source", _this.fund_source);
+
+              case 4:
+                res = _context.sent;
+                console.log(res);
+
+                if (res.status === 201) {
+                  Toast.fire({
+                    icon: "success",
+                    title: res.data
+                  });
+                  document.getElementById("fund_source_form").reset();
+                  $("#ChartOfAccount").modal("hide");
+                  Fire.$emit("addedFundSource");
+                }
+
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+                Toast.fire({
+                  icon: "error",
+                  title: _context.t0
+                });
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 9]]);
+      }))();
+    },
+    getFundSource: function getFundSource() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/fund-source").then(function (res) {
+                  _this2.fund_sources = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context2.sent;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    this.getFundSource(), Fire.$on("addedFundSource", function () {
+      _this3.getFundSource();
+    });
+  }
 });
 
 /***/ }),
@@ -6598,77 +6436,129 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      program_codes: [],
+      program_code: {
+        program_code_id: "",
+        program_title: "",
+        program_code: ""
+      }
+    };
+  },
+  methods: {
+    addProgramCode: function addProgramCode() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log(_this.program_code);
+                _context.prev = 1;
+                _context.next = 4;
+                return axios.post("/api/program-code", _this.program_code);
+
+              case 4:
+                res = _context.sent;
+                console.log(res);
+
+                if (res.status === 201) {
+                  Toast.fire({
+                    icon: "success",
+                    title: res.data
+                  });
+                  document.getElementById("program_code_form").reset;
+                  $("#ProgramCOde").modal("hide");
+                  Fire.$emit("addedProgramCode");
+                }
+
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+                Toast.fire({
+                  icon: "error",
+                  title: _context.t0.message
+                });
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 9]]);
+      }))();
+    },
+    getProgramCode: function getProgramCode() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/program-code").then(function (res) {
+                  _this2.program_codes = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+                res = _context2.sent;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    this.getProgramCode(), Fire.$on("addedProgramCode", function () {
+      _this3.getProgramCode();
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Budget/MasterRecords/ProjectCodes.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Budget/MasterRecords/ProjectCodes.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -6828,30 +6718,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      chart_of_accounts: [],
-      chart_of_account: {
-        general_ledger_account: 0,
-        account_group: "",
-        current_noncurrent: "",
-        major_account_group: 0,
-        sub_major_account_group: 0
-      },
-      general_ledger_accounts: [],
-      general_ledger_account: {
-        general_ledger_account_name: ""
-      },
-      major_account_groups: [],
-      major_account_group: {
-        major_account_group_name: ""
-      },
-      sub_major_account_groups: [],
-      sub_major_account_group: {
-        sub_major_account_group_name: ""
+      project_codes: [],
+      project_code: {
+        mfo_id: "",
+        mfo_code: "",
+        mfo_shortname: "",
+        mfo_description: ""
       }
     };
   },
   methods: {
-    addChartOfAccounts: function addChartOfAccounts() {
+    addProjectCodes: function addProjectCodes() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -6862,7 +6739,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios.post("api/chart-of-account", _this.chart_of_account);
+                return axios.post("/api/project-code", _this.project_code);
 
               case 3:
                 res = _context.sent;
@@ -6873,9 +6750,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     icon: "success",
                     title: res.data
                   });
-                  document.getElementById("chart_of_accounts_form").reset;
+                  document.getElementById("project_code_form").reset;
                   $("#ChartOfAccount").modal("hide");
-                  Fire.$emit("addedChart");
+                  Fire.$emit("addedProjectCode");
                 }
 
                 _context.next = 11;
@@ -6897,7 +6774,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[0, 8]]);
       }))();
     },
-    addGeneralLedgerAccount: function addGeneralLedgerAccount() {
+    getProjectCode: function getProjectCode() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -6906,458 +6783,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
-                return axios.post("api/general-ledger-account", _this2.general_ledger_account);
-
-              case 3:
-                res = _context2.sent;
-                console.log(res);
-
-                if (res.status === 201) {
-                  Toast.fire({
-                    icon: "success",
-                    title: res.data
-                  });
-                  document.getElementById("general_ledger_accounts_form").reset;
-                  $("#GeneralLedgerAccount").modal("hide");
-                  Fire.$emit("addedGeneralLedgerAccount");
-                }
-
-                _context2.next = 12;
-                break;
-
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
-                Toast.fire({
-                  icon: "error",
-                  title: _context2.t0
+                _context2.next = 2;
+                return axios.get("/api/project-code").then(function (res) {
+                  _this2.project_codes = res.data;
+                })["catch"](function (err) {
+                  console.log(err);
                 });
 
-              case 12:
+              case 2:
+                res = _context2.sent;
+
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
-      }))();
-    },
-    addMajorAccountGroup: function addMajorAccountGroup() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
-                return axios.post("api/major-account-group", _this3.major_account_group);
-
-              case 3:
-                res = _context3.sent;
-                console.log(res);
-
-                if (res.status === 201) {
-                  Toast.fire({
-                    icon: "success",
-                    title: res.data
-                  });
-                  document.getElementById("major_account_group_form").reset;
-                  $("#MajorAccountGroup").modal("hide");
-                  Fire.$emit("addedMajorAccountGroup");
-                }
-
-                _context3.next = 12;
-                break;
-
-              case 8:
-                _context3.prev = 8;
-                _context3.t0 = _context3["catch"](0);
-                console.log(_context3.t0);
-                Toast.fire({
-                  icon: "error",
-                  title: _context3.t0
-                });
-
-              case 12:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, null, [[0, 8]]);
-      }))();
-    },
-    addSubMajorAccountGroup: function addSubMajorAccountGroup() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.prev = 0;
-                _context4.next = 3;
-                return axios.post("api/sub-major-account-group", _this4.sub_major_account_group);
-
-              case 3:
-                res = _context4.sent;
-                console.log(res);
-
-                if (res.status === 201) {
-                  Toast.fire({
-                    icon: "success",
-                    title: res.data
-                  });
-                  document.getElementById("sub_major_account_group_form").reset;
-                  $("#SubMajorAccountGroup").modal("hide");
-                  Fire.$emit("addedSubMajorAccountGroup");
-                }
-
-                _context4.next = 12;
-                break;
-
-              case 8:
-                _context4.prev = 8;
-                _context4.t0 = _context4["catch"](0);
-                console.log(_context4.t0);
-                Toast.fire({
-                  icon: "error",
-                  title: _context4.t0
-                });
-
-              case 12:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, null, [[0, 8]]);
-      }))();
-    },
-    //get data functions
-    getChartOfAccounts: function getChartOfAccounts() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return axios.get("/api/chart-of-account").then(function (res) {
-                  _this5.chart_of_accounts = res.data;
-                  console.log(_this5.chart_of_accounts);
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context5.sent;
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    getGeneralLedgerAccount: function getGeneralLedgerAccount() {
-      var _this6 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _context6.next = 2;
-                return axios.get("/api/general-ledger-account").then(function (res) {
-                  _this6.general_ledger_accounts = res.data;
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context6.sent;
-
-              case 3:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }))();
-    },
-    getMajorAccountGroup: function getMajorAccountGroup() {
-      var _this7 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                _context7.next = 2;
-                return axios.get("/api/major-account-group").then(function (res) {
-                  _this7.major_account_groups = res.data;
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context7.sent;
-
-              case 3:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }))();
-    },
-    getSubMajorAccountGroup: function getSubMajorAccountGroup() {
-      var _this8 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                _context8.next = 2;
-                return axios.get("/api/sub-major-account-group").then(function (res) {
-                  _this8.sub_major_account_groups = res.data;
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-                res = _context8.sent;
-
-              case 3:
-              case "end":
-                return _context8.stop();
-            }
-          }
-        }, _callee8);
+        }, _callee2);
       }))();
     }
   },
   created: function created() {
-    var _this9 = this;
+    var _this3 = this;
 
-    this.getChartOfAccounts(), this.getGeneralLedgerAccount(), this.getMajorAccountGroup(), this.getSubMajorAccountGroup(), Fire.$on("addedChart", function () {
-      _this9.getChartOfAccounts();
-    });
-    Fire.$on("addedGeneralLedgerAccount", function () {
-      _this9.getGeneralLedgerAccount();
-    });
-    Fire.$on("addedMajorAccountGroup", function () {
-      _this9.getMajorAccountGroup();
-    }), Fire.$on("addedSubMajorAccountGroup", function () {
-      _this9.getSubMajorAccountGroup();
+    this.getProjectCode(), Fire.$on("addedProjectCode", function () {
+      _this3.getProjectCode();
     });
   }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Budget/MasterRecords/ProjectCodes.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Budget/MasterRecords/ProjectCodes.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Welcome */ "./resources/js/Jetstream/Welcome.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Welcome: _Jetstream_Welcome__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      project_codes: [],
-      project_code: {
-        mfo_pap_code: 0,
-        mfo_pap_shortname: "",
-        mfo_pap: ""
-      }
-    };
-  } // methods: {
-  //   async addProjectCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/project-codes,
-  //         this.project_code
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("project_code_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedProjectCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
-  //   async getProjectCode() {
-  //     const res = await axios
-  //       .get("/api/project-codes")
-  //       .then((res) => {
-  //         this.project-code = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getProjectCode(),
-  //     Fire.$on("addProjectCode", () => {
-  //       this.getProjectCode();
-  //     });
-  // },
-
 });
 
 /***/ }),
@@ -13349,7 +12800,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#MasterRecords dropdown-menu ul li {\n  text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "#MasterRecords dropdown-menu ul li {\n  text-decoration: none;\n}\n.dropdown-submenu {\n  position: relative;\n}\n.dropdown-submenu .dropdown-menu {\n  top: 0;\n  left: 100%;\n  margin-top: -1px;\n}\n", ""]);
 
 // exports
 
@@ -73660,6 +73111,8 @@ var render = function() {
                     [_vm._v("\n              Dashboard\n            ")]
                   ),
                   _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -73698,8 +73151,7 @@ var render = function() {
                           _c(
                             "ul",
                             {
-                              staticClass:
-                                "flex flex-column justify-items-auto "
+                              staticClass: "flex flex-column justify-items-auto"
                             },
                             [
                               _c(
@@ -74630,7 +74082,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "max-w-7xl py-6 px-4 sm:px-6 lg:px-8 flex align-items-center h-8"
+              "max-w-auto py-6 px-4 sm:px-6 lg:px-8 flex align-items-center h-8"
           },
           [_vm._t("header")],
           2
@@ -74646,7 +74098,117 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "dropdown btn-group border-opacity-0" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "btn dropdown-toggle text-white focus:border-transparent p-0 border-transparent border-opacity-0",
+          attrs: { type: "button", "data-toggle": "dropdown" }
+        },
+        [
+          _vm._v("\n                Acounting "),
+          _c("span", { staticClass: "caret" })
+        ]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "dropdown-menu" }, [
+        _c("li", { staticClass: "dropdown-submenu" }, [
+          _c(
+            "a",
+            { staticClass: "test", attrs: { tabindex: "-1", href: "#" } },
+            [_vm._v("Master Records "), _c("span", { staticClass: "caret" })]
+          ),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "dropdown-submenu" }, [
+          _c(
+            "a",
+            { staticClass: "test", attrs: { tabindex: "-1", href: "#" } },
+            [_vm._v("Transactions "), _c("span", { staticClass: "caret" })]
+          ),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "dropdown-submenu" }, [
+          _c(
+            "a",
+            { staticClass: "test", attrs: { tabindex: "-1", href: "#" } },
+            [_vm._v("Database"), _c("span", { staticClass: "caret" })]
+          ),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "dropdown-submenu" }, [
+          _c(
+            "a",
+            { staticClass: "test", attrs: { tabindex: "-1", href: "#" } },
+            [_vm._v("Reports"), _c("span", { staticClass: "caret" })]
+          ),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { tabindex: "-1", href: "#" } }, [
+                _vm._v("2nd level dropdown")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -76216,6 +75778,84 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "enable_disable" } },
+                                    [_vm._v(" Enable/Disable")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.chart_of_account.enable_disable,
+                                          expression:
+                                            "chart_of_account.enable_disable"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        name: "enable_disable",
+                                        id: "enable_disable"
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.chart_of_account,
+                                            "enable_disable",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: { selected: "", disabled: "" }
+                                        },
+                                        [_vm._v("Enable/Disable")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.enable_disable, function(ed) {
+                                        return _c(
+                                          "option",
+                                          { key: ed, domProps: { value: ed } },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(ed) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]),
+                                _vm._v(" "),
                                 _c("div", { staticClass: "d-flex" }, [
                                   _c(
                                     "button",
@@ -76255,7 +75895,11 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [
+                _vm._v("Chart Of Accounts")
+              ])
             ]
           },
           proxy: true
@@ -76286,7 +75930,9 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { scope: "col" } }, [
                 _vm._v("Sub Major Account Group")
-              ])
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Enable/Disable")])
             ])
           ]),
           _vm._v(" "),
@@ -76304,7 +75950,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(chart.major_account_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.sub_major_account_name))])
+                _c("td", [_vm._v(_vm._s(chart.sub_major_account_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(chart.enable_disable))])
               ])
             }),
             0
@@ -76596,7 +76244,9 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-1/2" }, [_vm._v("Remittance")])
             ]
           },
           proxy: true
@@ -76688,7 +76338,7 @@ var render = function() {
                       attrs: {
                         type: "button",
                         "data-toggle": "modal",
-                        "data-target": "#ChartOfAccounts",
+                        "data-target": "#AuthorizationCode",
                         "data-whatever": "@getbootstrap"
                       }
                     },
@@ -76696,159 +76346,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#GeneralLedgerAccount"
-                      }
-                    },
-                    [_vm._v("\n        add GeneralLedgerAccount\n      ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#MajorAccountGroup"
-                      }
-                    },
-                    [_vm._v("\n        add MajorAccountGroup\n      ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#SubMajorAccountGroup"
-                      }
-                    },
-                    [_vm._v("\n        add SubMajorAccountGroup\n      ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
                     "div",
                     {
                       staticClass: "modal fade",
                       attrs: {
-                        id: "SubMajorAccountGroup",
-                        tabindex: "-1",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-dialog" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c(
-                              "h5",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                SubMajorAccountGroup\n              "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { attrs: { "aria-hidden": "true" } },
-                                  [_vm._v("×")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", {
-                                attrs: { for: "SubMajorAccountGroup" }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.sub_major_account_group
-                                        .sub_major_account_group_name,
-                                    expression:
-                                      "\n                    sub_major_account_group.sub_major_account_group_name\n                  "
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "SubMajorAccountGroup",
-                                  "aria-describedby": "helpId",
-                                  placeholder: "SubMajorAccountGroup",
-                                  id: "sub_major_account_group_form"
-                                },
-                                domProps: {
-                                  value:
-                                    _vm.sub_major_account_group
-                                      .sub_major_account_group_name
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.sub_major_account_group,
-                                      "sub_major_account_group_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary d-flex ml-auto",
-                                attrs: { type: "button" },
-                                on: { click: _vm.addSubMajorAccountGroup }
-                              },
-                              [_vm._v("\n                Save\n              ")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "GeneralLedgerAccount",
+                        id: "AuthorizationCode",
                         tabindex: "-1",
                         "aria-labelledby": "exampleModalLabel",
                         "aria-hidden": "true"
@@ -76857,21 +76359,13 @@ var render = function() {
                     [
                       _c(
                         "div",
-                        {
-                          staticClass: "modal-dialog",
-                          attrs: { id: "general_ledger_accounts_form" }
-                        },
+                        { staticClass: "modal-dialog", attrs: { id: "" } },
                         [
                           _c("div", { staticClass: "modal-content" }, [
                             _c("div", { staticClass: "modal-header" }, [
-                              _c(
-                                "h5",
-                                {
-                                  staticClass: "modal-title",
-                                  attrs: { id: "exampleModalLabel" }
-                                },
-                                [_vm._v("Modal title")]
-                              ),
+                              _c("h5", { staticClass: "modal-title" }, [
+                                _vm._v("New Cluster Code")
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "button",
@@ -76894,62 +76388,175 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "modal-body" }, [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", {
-                                  attrs: { for: "GeneralLedgerAccount" }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value:
-                                        _vm.general_ledger_account
-                                          .general_ledger_account_name,
-                                      expression:
-                                        "general_ledger_account.general_ledger_account_name"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    name: "GeneralLedgerAccount",
-                                    "aria-describedby": "helpId",
-                                    placeholder: "GeneralLedgerAccount",
-                                    id: "general_ledger_accounts_form"
-                                  },
-                                  domProps: {
-                                    value:
-                                      _vm.general_ledger_account
-                                        .general_ledger_account_name
-                                  },
+                              _c(
+                                "form",
+                                {
+                                  attrs: { id: "allotment_class_form" },
                                   on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.general_ledger_account,
-                                        "general_ledger_account_name",
-                                        $event.target.value
-                                      )
+                                    submit: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.addAllotmentClass()
                                     }
                                   }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary d-flex ml-auto",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.addGeneralLedgerAccount }
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                Save\n              "
-                                  )
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "allotement_class" } },
+                                      [_vm._v("Allotment Class ID")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.allotment_class.allotment_id,
+                                          expression:
+                                            "allotment_class.allotment_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "allotement_class",
+                                        placeholder: "Allotment Class ID"
+                                      },
+                                      domProps: {
+                                        value: _vm.allotment_class.allotment_id
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.allotment_class,
+                                            "allotment_id",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("label", { attrs: { for: "uacs" } }, [
+                                      _vm._v("UACS Code")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.allotment_class.uacs_code,
+                                          expression:
+                                            "allotment_class.uacs_code"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "uacs",
+                                        "aria-describedby": "helpId",
+                                        placeholder: "UACS Code"
+                                      },
+                                      domProps: {
+                                        value: _vm.allotment_class.uacs_code
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.allotment_class,
+                                            "uacs_code",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "allotment_class" } },
+                                      [
+                                        _vm._v(
+                                          "allotment_class\n                  "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.allotment_class.allotment_class,
+                                          expression:
+                                            "allotment_class.allotment_class"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "allotment_class",
+                                        "aria-describedby": "helpId",
+                                        placeholder: "allotment_class"
+                                      },
+                                      domProps: {
+                                        value:
+                                          _vm.allotment_class.allotment_class
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.allotment_class,
+                                            "allotment_class",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "flex" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-secondary ml-auto mr-1",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Close\n                  "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: { type: "submit" }
+                                      },
+                                      [_vm._v("Save")]
+                                    )
+                                  ])
                                 ]
                               )
                             ])
@@ -76957,615 +76564,11 @@ var render = function() {
                         ]
                       )
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "MajorAccountGroup",
-                        tabindex: "-1",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-dialog" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c(
-                              "h5",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [_vm._v("Modal title")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { attrs: { "aria-hidden": "true" } },
-                                  [_vm._v("×")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", {
-                                attrs: { for: "MajorAccountGroup" }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.major_account_group
-                                        .major_account_group_name,
-                                    expression:
-                                      "major_account_group.major_account_group_name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "MajorAccountGroup",
-                                  "aria-describedby": "helpId",
-                                  placeholder: "MajorAccountGroup",
-                                  id: "major_account_group_form"
-                                },
-                                domProps: {
-                                  value:
-                                    _vm.major_account_group
-                                      .major_account_group_name
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.major_account_group,
-                                      "major_account_group_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary d-flex ml-auto",
-                                attrs: { type: "button" },
-                                on: { click: _vm.addMajorAccountGroup }
-                              },
-                              [_vm._v("\n                Save\n              ")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "ChartOfAccounts",
-                        tabindex: "-1",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-dialog" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c(
-                              "h5",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                New Chart Of Account\n              "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { attrs: { "aria-hidden": "true" } },
-                                  [_vm._v("×")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                attrs: { id: "chart_of_accounts_form" },
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.addChartOfAccounts()
-                                  }
-                                }
-                              },
-                              [
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "GeneralLedgerAccount" } },
-                                    [_vm._v("General Ledger Account")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .general_ledger_account,
-                                          expression:
-                                            "chart_of_account.general_ledger_account"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "GeneralLedgerAccount",
-                                        id: "GeneralLedgerAccount"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "general_ledger_account",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("General Ledger Account")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(
-                                        _vm.general_ledger_accounts,
-                                        function(gla) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: gla.id,
-                                              domProps: { value: gla.id }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                      " +
-                                                  _vm._s(
-                                                    gla.general_ledger_account_name
-                                                  ) +
-                                                  "\n                    "
-                                              )
-                                            ]
-                                          )
-                                        }
-                                      )
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "AccountGroup" } },
-                                    [_vm._v(" Account Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account.account_group,
-                                          expression:
-                                            "chart_of_account.account_group"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "AccountGroup",
-                                        id: "AccountGroup"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "account_group",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Account Group")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "accsample" } },
-                                        [_vm._v("accsample")]
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "Current_noncurrent" } },
-                                    [_vm._v("Current/Noncurrent")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .current_noncurrent,
-                                          expression:
-                                            "chart_of_account.current_noncurrent"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "Current_noncurrent",
-                                        id: "Current_noncurrent"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "current_noncurrent",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Current/Noncurrent")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "sample" } },
-                                        [_vm._v("sample")]
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "MajorAccountGroup" } },
-                                    [_vm._v("Major Account Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .major_account_group,
-                                          expression:
-                                            "chart_of_account.major_account_group"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "MajorAccountGroup",
-                                        id: "MajorAccountGroup"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "major_account_group",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Major Account Group")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.major_account_groups, function(
-                                        mag
-                                      ) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: mag.id,
-                                            domProps: { value: mag.id }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                      " +
-                                                _vm._s(mag.major_account_name) +
-                                                "\n                    "
-                                            )
-                                          ]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "SubMajorAccountGroup" } },
-                                    [
-                                      _vm._v(
-                                        "\n                    Sub Major Account Group"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .sub_major_account_group,
-                                          expression:
-                                            "chart_of_account.sub_major_account_group"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "SubMajorAccountGroup",
-                                        id: "SubMajorAccountGroup"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "sub_major_account_group",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Sub Major Account Group")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(
-                                        _vm.sub_major_account_groups,
-                                        function(smag) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: smag.id,
-                                              domProps: { value: smag.id }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                      " +
-                                                  _vm._s(
-                                                    smag.sub_major_account_name
-                                                  ) +
-                                                  "\n                    "
-                                              )
-                                            ]
-                                          )
-                                        }
-                                      )
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "d-flex" }, [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-secondary ml-auto mr-2",
-                                      attrs: {
-                                        type: "button",
-                                        "data-dismiss": "modal"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    Close\n                  "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-primary d-flex",
-                                      attrs: { type: "submit" }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    Save\n                  "
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [_vm._v("Allotment Class")])
             ]
           },
           proxy: true
@@ -77578,43 +76581,23 @@ var render = function() {
         _c("table", { staticClass: "table table-striped overflow-auto" }, [
           _c("thead", [
             _c("tr", [
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("ID")]),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("allotment_id")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("General Ledger Acount")
-              ]),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("uacs_code")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Account Group")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Current/Noncurrent")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Major Account Group")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Sub Major Account Group")
-              ])
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("allotment_class")])
             ])
           ]),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.chart_of_accounts, function(chart) {
-              return _c("tr", { key: chart.id }, [
-                _c("td", [_vm._v(_vm._s(chart.id))]),
+            _vm._l(_vm.allotment_classes, function(ac) {
+              return _c("tr", { key: ac.id }, [
+                _c("td", [_vm._v(_vm._s(ac.allotment_id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.general_ledger_account_name))]),
+                _c("td", [_vm._v(_vm._s(ac.uacs_code))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.account_group))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.current_noncurrent))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.major_account_name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.sub_major_account_name))])
+                _c("td", [_vm._v(_vm._s(ac.allotment_class))])
               ])
             }),
             0
@@ -77694,10 +76677,7 @@ var render = function() {
                     [
                       _c(
                         "div",
-                        {
-                          staticClass: "modal-dialog",
-                          attrs: { id: "AuthorizationCode_form" }
-                        },
+                        { staticClass: "modal-dialog", attrs: { id: "" } },
                         [
                           _c("div", { staticClass: "modal-content" }, [
                             _c("div", { staticClass: "modal-header" }, [
@@ -77731,7 +76711,7 @@ var render = function() {
                               _c(
                                 "form",
                                 {
-                                  attrs: { id: "AuthorizationCode_form" },
+                                  attrs: { id: "authorization_code_form" },
                                   on: {
                                     submit: function($event) {
                                       $event.preventDefault()
@@ -77856,7 +76836,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass: "btn btn-primary",
-                                        attrs: { type: "button" }
+                                        attrs: { type: "submit" }
                                       },
                                       [_vm._v("Save")]
                                     )
@@ -77870,7 +76850,11 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [
+                _vm._v("\n    Authorization Code\n    ")
+              ])
             ]
           },
           proxy: true
@@ -77893,13 +76877,11 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.authorization_codes, function(authorization_code) {
-              return _c("tr", { key: authorization_code.id }, [
-                _c("td", [
-                  _vm._v(_vm._s(authorization_code.authorization_code))
-                ]),
+            _vm._l(_vm.authorization_codes, function(ac) {
+              return _c("tr", { key: ac.id }, [
+                _c("td", [_vm._v(_vm._s(ac.authorization_code))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(authorization_code.description))])
+                _c("td", [_vm._v(_vm._s(ac.description))])
               ])
             }),
             0
@@ -78326,8 +77308,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.FCCCode.FCCCode_id,
-                                        expression: "FCCCode.FCCCode_id"
+                                        value: _vm.FCCCode.fund_category_id,
+                                        expression: "FCCCode.fund_category_id"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -78337,7 +77319,9 @@ var render = function() {
                                       "aria-describedby": "helpId",
                                       placeholder: "Fund_cluster_code"
                                     },
-                                    domProps: { value: _vm.FCCCode.FCCCode_id },
+                                    domProps: {
+                                      value: _vm.FCCCode.fund_category_id
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -78345,7 +77329,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.FCCCode,
-                                          "FCCCode_id",
+                                          "fund_category_id",
                                           $event.target.value
                                         )
                                       }
@@ -78406,8 +77390,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.FCCCode.description,
-                                        expression: "FCCCode.description"
+                                        value: _vm.FCCCode.fund_category_code,
+                                        expression: "FCCCode.fund_category_code"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -78418,7 +77402,7 @@ var render = function() {
                                       placeholder: "FCCCode"
                                     },
                                     domProps: {
-                                      value: _vm.FCCCode.description
+                                      value: _vm.FCCCode.fund_category_code
                                     },
                                     on: {
                                       input: function($event) {
@@ -78427,7 +77411,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.FCCCode,
-                                          "description",
+                                          "fund_category_code",
                                           $event.target.value
                                         )
                                       }
@@ -78439,7 +77423,7 @@ var render = function() {
                                   _c(
                                     "label",
                                     { attrs: { for: "FCCCode.nsac" } },
-                                    [_vm._v("Existing NSACS Fund  Code")]
+                                    [_vm._v("Existing NSACS Fund Code")]
                                   ),
                                   _vm._v(" "),
                                   _c("input", {
@@ -78496,7 +77480,7 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "btn btn-primary",
-                                      attrs: { type: "button" }
+                                      attrs: { type: "submit" }
                                     },
                                     [_vm._v("Save")]
                                   )
@@ -78509,7 +77493,11 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [
+                _vm._v("Fund Category and Classification Codes")
+              ])
             ]
           },
           proxy: true
@@ -78544,13 +77532,13 @@ var render = function() {
             "tbody",
             _vm._l(_vm.FCCCodes, function(fccc) {
               return _c("tr", { key: fccc.id }, [
-                _c("td", [_vm._v(_vm._s(fccc.id))]),
+                _c("td", [_vm._v(_vm._s(fccc.fund_category_id))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fccc.description))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(fccc.fccc_code))]),
+                _c("td", [_vm._v(_vm._s(fccc.fund_category_code))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(fccc.nsacs))])
+                _c("td", [_vm._v(_vm._s(fccc.nsac))])
               ])
             }),
             0
@@ -78697,9 +77685,9 @@ var render = function() {
                                           rawName: "v-model",
                                           value:
                                             _vm.fund_cluster_code
-                                              .fund_cluster_code_id,
+                                              .fund_cluster_code,
                                           expression:
-                                            "fund_cluster_code.fund_cluster_code_id"
+                                            "fund_cluster_code.fund_cluster_code"
                                         }
                                       ],
                                       staticClass: "form-control",
@@ -78712,7 +77700,7 @@ var render = function() {
                                       domProps: {
                                         value:
                                           _vm.fund_cluster_code
-                                            .fund_cluster_code_id
+                                            .fund_cluster_code
                                       },
                                       on: {
                                         input: function($event) {
@@ -78721,7 +77709,7 @@ var render = function() {
                                           }
                                           _vm.$set(
                                             _vm.fund_cluster_code,
-                                            "fund_cluster_code_id",
+                                            "fund_cluster_code",
                                             $event.target.value
                                           )
                                         }
@@ -78808,7 +77796,9 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [_vm._v("FundClusterCode")])
             ]
           },
           proxy: true
@@ -78833,7 +77823,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.fund_cluster_codes, function(cluster_code) {
               return _c("tr", { key: cluster_code.id }, [
-                _c("td", [_vm._v(_vm._s(cluster_code.id))]),
+                _c("td", [_vm._v(_vm._s(cluster_code.fund_cluster_code))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(cluster_code.description))])
               ])
@@ -78946,11 +77936,11 @@ var render = function() {
                             _c(
                               "form",
                               {
-                                attrs: { id: "AuthorizationCode_form" },
+                                attrs: { id: "fund_source_form" },
                                 on: {
                                   submit: function($event) {
                                     $event.preventDefault()
-                                    return _vm.addProjectCodes()
+                                    return _vm.addFundSource()
                                   }
                                 }
                               },
@@ -78958,12 +77948,8 @@ var render = function() {
                                 _c("div", { staticClass: "form-group" }, [
                                   _c(
                                     "label",
-                                    { attrs: { for: "ProjectCodes" } },
-                                    [
-                                      _vm._v(
-                                        "Fund Category and Classification Code "
-                                      )
-                                    ]
+                                    { attrs: { for: "fund_source_id" } },
+                                    [_vm._v("Fund Source ID")]
                                   ),
                                   _vm._v(" "),
                                   _c("input", {
@@ -78971,19 +77957,19 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.project_code.mfo_pap_code,
-                                        expression: "project_code.mfo_pap_code"
+                                        value: _vm.fund_source.fund_source_id,
+                                        expression: "fund_source.fund_source_id"
                                       }
                                     ],
                                     staticClass: "form-control",
                                     attrs: {
                                       type: "text",
-                                      name: "AuthorizationCode",
+                                      name: "fund_source_id",
                                       "aria-describedby": "helpId",
-                                      placeholder: "Authorization Code"
+                                      placeholder: "fund_source_id"
                                     },
                                     domProps: {
-                                      value: _vm.project_code.mfo_pap_code
+                                      value: _vm.fund_source.fund_source_id
                                     },
                                     on: {
                                       input: function($event) {
@@ -78991,8 +77977,49 @@ var render = function() {
                                           return
                                         }
                                         _vm.$set(
-                                          _vm.project_code,
-                                          "mfo_pap_code",
+                                          _vm.fund_source,
+                                          "fund_source_id",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "fund_source" } },
+                                    [_vm._v("Fund Source")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.fund_source.fund_source,
+                                        expression: "fund_source.fund_source"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "fund_source",
+                                      "aria-describedby": "helpId",
+                                      placeholder: "fund_source"
+                                    },
+                                    domProps: {
+                                      value: _vm.fund_source.fund_source
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.fund_source,
+                                          "fund_source",
                                           $event.target.value
                                         )
                                       }
@@ -79004,7 +78031,7 @@ var render = function() {
                                   _c(
                                     "label",
                                     { attrs: { for: "description" } },
-                                    [_vm._v("MFO/PAP Shortname")]
+                                    [_vm._v("Description")]
                                   ),
                                   _vm._v(" "),
                                   _c("input", {
@@ -79013,20 +78040,22 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value:
-                                          _vm.project_code.mfo_pap_shortname,
+                                          _vm.fund_source
+                                            .fund_source_description,
                                         expression:
-                                          "project_code.mfo_pap_shortname"
+                                          "fund_source.fund_source_description"
                                       }
                                     ],
                                     staticClass: "form-control",
                                     attrs: {
                                       type: "text",
-                                      name: "MFO/PAP Shortname",
+                                      name: "description",
                                       "aria-describedby": "helpId",
                                       placeholder: "description"
                                     },
                                     domProps: {
-                                      value: _vm.project_code.mfo_pap_shortname
+                                      value:
+                                        _vm.fund_source.fund_source_description
                                     },
                                     on: {
                                       input: function($event) {
@@ -79034,8 +78063,8 @@ var render = function() {
                                           return
                                         }
                                         _vm.$set(
-                                          _vm.project_code,
-                                          "mfo_pap_shortname",
+                                          _vm.fund_source,
+                                          "fund_source_description",
                                           $event.target.value
                                         )
                                       }
@@ -79065,7 +78094,7 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "btn btn-primary",
-                                      attrs: { type: "button" }
+                                      attrs: { type: "submit" }
                                     },
                                     [_vm._v("Save")]
                                   )
@@ -79078,7 +78107,9 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [_vm._v("Fund Source")])
             ]
           },
           proxy: true
@@ -79091,29 +78122,23 @@ var render = function() {
         _c("table", { staticClass: "table table-striped overflow-auto" }, [
           _c("thead", [
             _c("tr", [
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("MFO/PAP ID")]),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Fund Source ID")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("MFO/PAP code")]),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Fund Source")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("MFO/PAP shortname")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("MFO/PAP")])
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")])
             ])
           ]),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.project_codes, function(pc) {
-              return _c("tr", { key: pc.id }, [
-                _c("td", [_vm._v(_vm._s(pc.id))]),
+            _vm._l(_vm.fund_sources, function(fs) {
+              return _c("tr", { key: fs.id }, [
+                _c("td", [_vm._v(_vm._s(fs.fund_source_id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pc.mfo_pap_code))]),
+                _c("td", [_vm._v(_vm._s(fs.fund_source))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pc.mfo_pap_shortname))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pc.mfo_pap))])
+                _c("td", [_vm._v(_vm._s(fs.fund_source_description))])
               ])
             }),
             0
@@ -79172,7 +78197,7 @@ var render = function() {
                       attrs: {
                         type: "button",
                         "data-toggle": "modal",
-                        "data-target": "#ChartOfAccounts",
+                        "data-target": "#ProgramCOde",
                         "data-whatever": "@getbootstrap"
                       }
                     },
@@ -79180,159 +78205,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#GeneralLedgerAccount"
-                      }
-                    },
-                    [_vm._v("\n        add GeneralLedgerAccount\n      ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#MajorAccountGroup"
-                      }
-                    },
-                    [_vm._v("\n        add MajorAccountGroup\n      ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#SubMajorAccountGroup"
-                      }
-                    },
-                    [_vm._v("\n        add SubMajorAccountGroup\n      ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
                     "div",
                     {
                       staticClass: "modal fade",
                       attrs: {
-                        id: "SubMajorAccountGroup",
-                        tabindex: "-1",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-dialog" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c(
-                              "h5",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                SubMajorAccountGroup\n              "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { attrs: { "aria-hidden": "true" } },
-                                  [_vm._v("×")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", {
-                                attrs: { for: "SubMajorAccountGroup" }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.sub_major_account_group
-                                        .sub_major_account_group_name,
-                                    expression:
-                                      "\n                    sub_major_account_group.sub_major_account_group_name\n                  "
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "SubMajorAccountGroup",
-                                  "aria-describedby": "helpId",
-                                  placeholder: "SubMajorAccountGroup",
-                                  id: "sub_major_account_group_form"
-                                },
-                                domProps: {
-                                  value:
-                                    _vm.sub_major_account_group
-                                      .sub_major_account_group_name
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.sub_major_account_group,
-                                      "sub_major_account_group_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary d-flex ml-auto",
-                                attrs: { type: "button" },
-                                on: { click: _vm.addSubMajorAccountGroup }
-                              },
-                              [_vm._v("\n                Save\n              ")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "GeneralLedgerAccount",
+                        id: "ProgramCOde",
                         tabindex: "-1",
                         "aria-labelledby": "exampleModalLabel",
                         "aria-hidden": "true"
@@ -79341,21 +78218,13 @@ var render = function() {
                     [
                       _c(
                         "div",
-                        {
-                          staticClass: "modal-dialog",
-                          attrs: { id: "general_ledger_accounts_form" }
-                        },
+                        { staticClass: "modal-dialog", attrs: { id: "" } },
                         [
                           _c("div", { staticClass: "modal-content" }, [
                             _c("div", { staticClass: "modal-header" }, [
-                              _c(
-                                "h5",
-                                {
-                                  staticClass: "modal-title",
-                                  attrs: { id: "exampleModalLabel" }
-                                },
-                                [_vm._v("Modal title")]
-                              ),
+                              _c("h5", { staticClass: "modal-title" }, [
+                                _vm._v("New Cluster Code")
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "button",
@@ -79378,62 +78247,175 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "modal-body" }, [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", {
-                                  attrs: { for: "GeneralLedgerAccount" }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value:
-                                        _vm.general_ledger_account
-                                          .general_ledger_account_name,
-                                      expression:
-                                        "general_ledger_account.general_ledger_account_name"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    name: "GeneralLedgerAccount",
-                                    "aria-describedby": "helpId",
-                                    placeholder: "GeneralLedgerAccount",
-                                    id: "general_ledger_accounts_form"
-                                  },
-                                  domProps: {
-                                    value:
-                                      _vm.general_ledger_account
-                                        .general_ledger_account_name
-                                  },
+                              _c(
+                                "form",
+                                {
+                                  attrs: { id: "program_code_form" },
                                   on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.general_ledger_account,
-                                        "general_ledger_account_name",
-                                        $event.target.value
-                                      )
+                                    submit: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.addProgramCode()
                                     }
                                   }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary d-flex ml-auto",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.addGeneralLedgerAccount }
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                Save\n              "
-                                  )
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "program_code_id" } },
+                                      [_vm._v("program_code_id ID")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.program_code.program_code_id,
+                                          expression:
+                                            "program_code.program_code_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "program_code_id",
+                                        placeholder: "program_code_id"
+                                      },
+                                      domProps: {
+                                        value: _vm.program_code.program_code_id
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.program_code,
+                                            "program_code_id",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "program_title" } },
+                                      [_vm._v("program_title")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.program_code.program_title,
+                                          expression:
+                                            "program_code.program_title"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "program_title",
+                                        "aria-describedby": "helpId",
+                                        placeholder: "program_title "
+                                      },
+                                      domProps: {
+                                        value: _vm.program_code.program_title
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.program_code,
+                                            "program_title",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "program_code" } },
+                                      [
+                                        _vm._v(
+                                          "program_code\n                  "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.program_code.program_code,
+                                          expression:
+                                            "program_code.program_code"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "program_code",
+                                        "aria-describedby": "helpId",
+                                        placeholder: "program_code"
+                                      },
+                                      domProps: {
+                                        value: _vm.program_code.program_code
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.program_code,
+                                            "program_code",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "flex" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-secondary ml-auto mr-1",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Close\n                  "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: { type: "submit" }
+                                      },
+                                      [_vm._v("Save")]
+                                    )
+                                  ])
                                 ]
                               )
                             ])
@@ -79441,615 +78423,11 @@ var render = function() {
                         ]
                       )
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "MajorAccountGroup",
-                        tabindex: "-1",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-dialog" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c(
-                              "h5",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [_vm._v("Modal title")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { attrs: { "aria-hidden": "true" } },
-                                  [_vm._v("×")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", {
-                                attrs: { for: "MajorAccountGroup" }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.major_account_group
-                                        .major_account_group_name,
-                                    expression:
-                                      "major_account_group.major_account_group_name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "MajorAccountGroup",
-                                  "aria-describedby": "helpId",
-                                  placeholder: "MajorAccountGroup",
-                                  id: "major_account_group_form"
-                                },
-                                domProps: {
-                                  value:
-                                    _vm.major_account_group
-                                      .major_account_group_name
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.major_account_group,
-                                      "major_account_group_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary d-flex ml-auto",
-                                attrs: { type: "button" },
-                                on: { click: _vm.addMajorAccountGroup }
-                              },
-                              [_vm._v("\n                Save\n              ")]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "ChartOfAccounts",
-                        tabindex: "-1",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "modal-dialog" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c(
-                              "h5",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                New Chart Of Account\n              "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _c(
-                                  "span",
-                                  { attrs: { "aria-hidden": "true" } },
-                                  [_vm._v("×")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                attrs: { id: "chart_of_accounts_form" },
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.addChartOfAccounts()
-                                  }
-                                }
-                              },
-                              [
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "GeneralLedgerAccount" } },
-                                    [_vm._v("General Ledger Account")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .general_ledger_account,
-                                          expression:
-                                            "chart_of_account.general_ledger_account"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "GeneralLedgerAccount",
-                                        id: "GeneralLedgerAccount"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "general_ledger_account",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("General Ledger Account")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(
-                                        _vm.general_ledger_accounts,
-                                        function(gla) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: gla.id,
-                                              domProps: { value: gla.id }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                      " +
-                                                  _vm._s(
-                                                    gla.general_ledger_account_name
-                                                  ) +
-                                                  "\n                    "
-                                              )
-                                            ]
-                                          )
-                                        }
-                                      )
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "AccountGroup" } },
-                                    [_vm._v(" Account Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account.account_group,
-                                          expression:
-                                            "chart_of_account.account_group"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "AccountGroup",
-                                        id: "AccountGroup"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "account_group",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Account Group")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "accsample" } },
-                                        [_vm._v("accsample")]
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "Current_noncurrent" } },
-                                    [_vm._v("Current/Noncurrent")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .current_noncurrent,
-                                          expression:
-                                            "chart_of_account.current_noncurrent"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "Current_noncurrent",
-                                        id: "Current_noncurrent"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "current_noncurrent",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Current/Noncurrent")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "sample" } },
-                                        [_vm._v("sample")]
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "MajorAccountGroup" } },
-                                    [_vm._v("Major Account Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .major_account_group,
-                                          expression:
-                                            "chart_of_account.major_account_group"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "MajorAccountGroup",
-                                        id: "MajorAccountGroup"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "major_account_group",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Major Account Group")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.major_account_groups, function(
-                                        mag
-                                      ) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: mag.id,
-                                            domProps: { value: mag.id }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                      " +
-                                                _vm._s(mag.major_account_name) +
-                                                "\n                    "
-                                            )
-                                          ]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "SubMajorAccountGroup" } },
-                                    [
-                                      _vm._v(
-                                        "\n                    Sub Major Account Group"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value:
-                                            _vm.chart_of_account
-                                              .sub_major_account_group,
-                                          expression:
-                                            "chart_of_account.sub_major_account_group"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "SubMajorAccountGroup",
-                                        id: "SubMajorAccountGroup"
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.chart_of_account,
-                                            "sub_major_account_group",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { selected: "", disabled: "" }
-                                        },
-                                        [_vm._v("Sub Major Account Group")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(
-                                        _vm.sub_major_account_groups,
-                                        function(smag) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: smag.id,
-                                              domProps: { value: smag.id }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                      " +
-                                                  _vm._s(
-                                                    smag.sub_major_account_name
-                                                  ) +
-                                                  "\n                    "
-                                              )
-                                            ]
-                                          )
-                                        }
-                                      )
-                                    ],
-                                    2
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "d-flex" }, [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-secondary ml-auto mr-2",
-                                      attrs: {
-                                        type: "button",
-                                        "data-dismiss": "modal"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    Close\n                  "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-primary d-flex",
-                                      attrs: { type: "submit" }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    Save\n                  "
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [_vm._v("program code")])
             ]
           },
           proxy: true
@@ -80062,43 +78440,23 @@ var render = function() {
         _c("table", { staticClass: "table table-striped overflow-auto" }, [
           _c("thead", [
             _c("tr", [
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("ID")]),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("program_code")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("General Ledger Acount")
-              ]),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("program_title")]),
               _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Account Group")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Current/Noncurrent")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Major Account Group")
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Sub Major Account Group")
-              ])
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("program_code")])
             ])
           ]),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.chart_of_accounts, function(chart) {
-              return _c("tr", { key: chart.id }, [
-                _c("td", [_vm._v(_vm._s(chart.id))]),
+            _vm._l(_vm.program_codes, function(pc) {
+              return _c("tr", { key: pc.id }, [
+                _c("td", [_vm._v(_vm._s(pc.program_code))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.general_ledger_account_name))]),
+                _c("td", [_vm._v(_vm._s(pc.program_title))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.account_group))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.current_noncurrent))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.major_account_name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(chart.sub_major_account_name))])
+                _c("td", [_vm._v(_vm._s(pc.program_code))])
               ])
             }),
             0
@@ -80180,9 +78538,7 @@ var render = function() {
                         _c("div", { staticClass: "modal-content" }, [
                           _c("div", { staticClass: "modal-header" }, [
                             _c("h5", { staticClass: "modal-title" }, [
-                              _vm._v(
-                                "\n                New Cluster Code\n              "
-                              )
+                              _vm._v("New Cluster Code")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -80209,7 +78565,7 @@ var render = function() {
                             _c(
                               "form",
                               {
-                                attrs: { id: "AuthorizationCode_form" },
+                                attrs: { id: "project_code_form" },
                                 on: {
                                   submit: function($event) {
                                     $event.preventDefault()
@@ -80222,11 +78578,7 @@ var render = function() {
                                   _c(
                                     "label",
                                     { attrs: { for: "ProjectCodes" } },
-                                    [
-                                      _vm._v(
-                                        "Fund Category and Classification Code "
-                                      )
-                                    ]
+                                    [_vm._v("MFO/PAP ID\n                  ")]
                                   ),
                                   _vm._v(" "),
                                   _c("input", {
@@ -80234,8 +78586,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.project_code.mfo_pap_code,
-                                        expression: "project_code.mfo_pap_code"
+                                        value: _vm.project_code.mfo_id,
+                                        expression: "project_code.mfo_id"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -80243,10 +78595,10 @@ var render = function() {
                                       type: "text",
                                       name: "AuthorizationCode",
                                       "aria-describedby": "helpId",
-                                      placeholder: "Authorization Code"
+                                      placeholder: "MFO/PAP ID"
                                     },
                                     domProps: {
-                                      value: _vm.project_code.mfo_pap_code
+                                      value: _vm.project_code.mfo_id
                                     },
                                     on: {
                                       input: function($event) {
@@ -80255,7 +78607,48 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.project_code,
-                                          "mfo_pap_code",
+                                          "mfo_id",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "description" } },
+                                    [_vm._v("MFO/PAP Code")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.project_code.mfo_code,
+                                        expression: "project_code.mfo_code"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "MFO/PAP Shortname",
+                                      "aria-describedby": "helpId",
+                                      placeholder: "MFO/PAP Code"
+                                    },
+                                    domProps: {
+                                      value: _vm.project_code.mfo_code
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.project_code,
+                                          "mfo_code",
                                           $event.target.value
                                         )
                                       }
@@ -80275,10 +78668,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value:
-                                          _vm.project_code.mfo_pap_shortname,
-                                        expression:
-                                          "project_code.mfo_pap_shortname"
+                                        value: _vm.project_code.mfo_shortname,
+                                        expression: "project_code.mfo_shortname"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -80286,10 +78677,10 @@ var render = function() {
                                       type: "text",
                                       name: "MFO/PAP Shortname",
                                       "aria-describedby": "helpId",
-                                      placeholder: "description"
+                                      placeholder: "MFO/PAP Shortname"
                                     },
                                     domProps: {
-                                      value: _vm.project_code.mfo_pap_shortname
+                                      value: _vm.project_code.mfo_shortname
                                     },
                                     on: {
                                       input: function($event) {
@@ -80298,7 +78689,49 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.project_code,
-                                          "mfo_pap_shortname",
+                                          "mfo_shortname",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "description" } },
+                                    [_vm._v("MFO/PAP description")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.project_code.mfo_description,
+                                        expression:
+                                          "project_code.mfo_description"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "MFO/PAP Shortname",
+                                      "aria-describedby": "helpId",
+                                      placeholder: "MFO/PAP description"
+                                    },
+                                    domProps: {
+                                      value: _vm.project_code.mfo_description
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.project_code,
+                                          "mfo_description",
                                           $event.target.value
                                         )
                                       }
@@ -80328,7 +78761,7 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass: "btn btn-primary",
-                                      attrs: { type: "button" }
+                                      attrs: { type: "submit" }
                                     },
                                     [_vm._v("Save")]
                                   )
@@ -80341,7 +78774,9 @@ var render = function() {
                     ]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "ml-auto" }, [_vm._v("MFO/PAP Codes")])
             ]
           },
           proxy: true
@@ -80370,13 +78805,13 @@ var render = function() {
             "tbody",
             _vm._l(_vm.project_codes, function(pc) {
               return _c("tr", { key: pc.id }, [
-                _c("td", [_vm._v(_vm._s(pc.id))]),
+                _c("td", [_vm._v(_vm._s(pc.mfo_id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pc.mfo_pap_code))]),
+                _c("td", [_vm._v(_vm._s(pc.mfo_code))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pc.mfo_pap_shortname))]),
+                _c("td", [_vm._v(_vm._s(pc.mfo_shortname))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pc.mfo_pap))])
+                _c("td", [_vm._v(_vm._s(pc.mfo_description))])
               ])
             }),
             0

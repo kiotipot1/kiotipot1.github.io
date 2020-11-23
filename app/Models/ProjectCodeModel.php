@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FundClusterCodeModel extends Model
+class ProjectCodeModel extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'fund_cluster_code';
+    protected $table = 'mfo_project_code';
+    use HasFactory;
     protected $fillable = [
-
-        'fund_cluster_code',
-        'description',
-
+        'id',
+        'mfo_id',
+        'mfo_code',
+        'mfo_shortname',
+        'mfo_description'
     ];
 }

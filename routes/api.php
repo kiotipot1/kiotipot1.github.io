@@ -1,15 +1,21 @@
 <?php
 
+use App\Http\Controllers\AllotmentClassController;
+use App\Http\Controllers\AuthorizationCodeController;
 use App\Http\Controllers\ChartOfAccountsController;
 use App\Http\Controllers\FinanceSourceCodeController;
+use App\Http\Controllers\FundCategoryController;
 use App\Http\Controllers\FundClusterCodeController;
+use App\Http\Controllers\FundSourceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MajorAccountGroup1Controller;
 use App\Http\Controllers\SubMajorAccountGroupController;
 use App\Http\Controllers\GeneralLedgerAccountController;
+use App\Http\Controllers\ProgramCodeController;
+use App\Http\Controllers\ProjectCodeController;
 use App\Http\Controllers\RemittanceController;
-use App\Models\FinanceSourceCodeModel;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +41,16 @@ Route::resource('remittance', RemittanceController::class);
 Route::resource('fund-cluster-code', FundClusterCodeController::class);
 
 Route::resource('finance-source-code', FinanceSourceCodeController::class);
+
+Route::resource('authorization-code', AuthorizationCodeController::class);
+
+Route::resource('fund-category-cluster-code', FundCategoryController::class);
+
+Route::resource('project-code', ProjectCodeController::class);
+
+Route::resource('allotment-class', AllotmentClassController::class);
+
+
+Route::resource('program-code', ProgramCodeController::class);
+
+Route::resource('fund-source', FundSourceController::class);

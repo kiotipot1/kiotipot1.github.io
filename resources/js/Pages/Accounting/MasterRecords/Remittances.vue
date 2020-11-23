@@ -95,6 +95,7 @@
         </div>
         <!-- ADD MajorAccountGroup MODAL-->
       </div>
+      <h4 class="ml-1/2">Remittance</h4>
     </template>
     <!-- Table -->
     <div class="px-6">

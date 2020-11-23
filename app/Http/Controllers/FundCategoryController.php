@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FundClusterCodeModel;
+use App\Models\FundCategoryModel;
 use Illuminate\Http\Request;
 
-class FundClusterCodeController extends Controller
+class FundCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FundClusterCodeController extends Controller
      */
     public function index()
     {
-        return FundClusterCodeModel::all();
+        return FundCategoryModel::all();
     }
 
     /**
@@ -25,27 +25,29 @@ class FundClusterCodeController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate($request, [
-
-            'description' => 'required',
-            'fund_cluster_code' => 'required',
+            'fund_category_id',
+            'description',
+            'fund_category_code',
+            'nsac'
         ]);
-        $fc = new FundClusterCodeModel();
-        $fc->fund_cluster_code = $request->fund_cluster_code;
-        $fc->description = $request->description;
+        $fc=new FundCategoryModel();
+        $fc->fund_category_id= $request->fund_category_id;
+        $fc->description=$request->description;
+        $fc->fund_category_code=$request->fund_category_code;
+        $fc->nsac=$request->nsac;
         $fc->save();
-        return response("successfuly save", 201);
+
+        return response("success",201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FundClusterCodeModel  $fundClusterCodeModel
+     * @param  \App\Models\FundCategoryModel  $fundCategoryModel
      * @return \Illuminate\Http\Response
      */
-    public function show(FundClusterCodeModel $fundClusterCodeModel)
+    public function show(FundCategoryModel $fundCategoryModel)
     {
         //
     }
@@ -54,10 +56,10 @@ class FundClusterCodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FundClusterCodeModel  $fundClusterCodeModel
+     * @param  \App\Models\FundCategoryModel  $fundCategoryModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FundClusterCodeModel $fundClusterCodeModel)
+    public function update(Request $request, FundCategoryModel $fundCategoryModel)
     {
         //
     }
@@ -65,10 +67,10 @@ class FundClusterCodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FundClusterCodeModel  $fundClusterCodeModel
+     * @param  \App\Models\FundCategoryModel  $fundCategoryModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FundClusterCodeModel $fundClusterCodeModel)
+    public function destroy(FundCategoryModel $fundCategoryModel)
     {
         //
     }

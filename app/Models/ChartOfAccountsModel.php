@@ -16,6 +16,7 @@ class ChartOfAccountsModel extends Model
         'current_noncurrent',
         'major_account_group_name',
         'sub_major_account_group_name',
+        'enable_disable'
 
     ];
 }

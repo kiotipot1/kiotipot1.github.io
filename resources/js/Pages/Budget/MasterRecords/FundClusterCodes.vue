@@ -53,7 +53,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      v-model="fund_cluster_code.fund_cluster_code_id"
+                      v-model="fund_cluster_code.fund_cluster_code"
                       name="description"
                       aria-describedby="helpId"
                       placeholder="fundClusterCode"
@@ -89,6 +89,7 @@
         </div>
         <!-- ADD MajorAccountGroup MODAL-->
       </div>
+       <h4 class="ml-auto">FundClusterCode</h4>
     </template>
     <!-- Table -->
     <div class="px-6">
@@ -101,7 +102,7 @@
         </thead>
         <tbody>
           <tr v-for="cluster_code in fund_cluster_codes" :key="cluster_code.id">
-            <td>{{ cluster_code.id }}</td>
+            <td>{{ cluster_code.fund_cluster_code }}</td>
             <td>{{ cluster_code.description }}</td>
           </tr>
         </tbody>
@@ -129,7 +130,7 @@ export default {
     return {
       fund_cluster_codes: [],
       fund_cluster_code: {
-        fund_cluster_code_id:0,
+        fund_cluster_code:"",
         description: "",
       },
     };
@@ -148,8 +149,8 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("fund_cluster_code_form").reset;
-          $("#ChartOfAccount").modal("hide");
+          document.getElementById("fund_cluster_code_form").reset();
+          $("#FundClusterCode").modal("hide");
           Fire.$emit("addedFundClusterCode");
         }
       } catch (e) {

@@ -296,6 +296,24 @@
                       </option>
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="enable_disable"> Enable/Disable</label>
+                    <select
+                      class="form-control"
+                      name="enable_disable"
+                      id="enable_disable"
+                      v-model="chart_of_account.enable_disable"
+                    >
+                      <option selected disabled>Enable/Disable</option>
+                      <option
+                        :value="ed"
+                        v-for="ed in enable_disable"
+                        :key="ed"
+                      >
+                        {{ ed }}
+                      </option>
+                    </select>
+                  </div>
 
                   <div class="d-flex">
                     <button
@@ -315,6 +333,7 @@
           </div>
         </div>
       </div>
+      <h4 class="ml-auto">Chart Of Accounts</h4>
     </template>
     <!-- Table -->
     <div class="px-6">
@@ -327,6 +346,7 @@
             <th scope="col">Current/Noncurrent</th>
             <th scope="col">Major Account Group</th>
             <th scope="col">Sub Major Account Group</th>
+            <th scope="col">Enable/Disable</th>
           </tr>
         </thead>
         <tbody>
@@ -337,6 +357,7 @@
             <td>{{ chart.current_noncurrent }}</td>
             <td>{{ chart.major_account_name }}</td>
             <td>{{ chart.sub_major_account_name }}</td>
+            <td>{{ chart.enable_disable }}</td>
           </tr>
         </tbody>
       </table>
@@ -361,13 +382,17 @@ export default {
   },
   data() {
     return {
+      enable_disable: [
+        "enable","disable"
+      ],
       chart_of_accounts: [],
       chart_of_account: {
-        general_ledger_account: 0,
+        general_ledger_account: "",
         account_group: "",
         current_noncurrent: "",
-        major_account_group: 0,
-        sub_major_account_group: 0,
+        major_account_group: "",
+        sub_major_account_group: "",
+        enable_disable: "",
       },
       general_ledger_accounts: [],
       general_ledger_account: {
@@ -409,7 +434,6 @@ export default {
     },
 
     async addGeneralLedgerAccount() {
-     
       try {
         const res = await axios.post(
           "/api/general-ledger-account",
@@ -528,14 +552,14 @@ export default {
     },
   },
   created() {
-      this.getChartOfAccounts(),
+    this.getChartOfAccounts(),
       this.getGeneralLedgerAccount(),
       this.getMajorAccountGroup(),
       this.getSubMajorAccountGroup(),
       Fire.$on("addedChart", () => {
         this.getChartOfAccounts();
       });
-      Fire.$on("addedGeneralLedgerAccount", () => {
+    Fire.$on("addedGeneralLedgerAccount", () => {
       this.getGeneralLedgerAccount();
     });
     Fire.$on("addedMajorAccountGroup", () => {

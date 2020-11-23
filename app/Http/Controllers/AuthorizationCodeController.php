@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FundClusterCodeModel;
+use App\Models\AuthorizationCodeModel;
 use Illuminate\Http\Request;
 
-class FundClusterCodeController extends Controller
+class AuthorizationCodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FundClusterCodeController extends Controller
      */
     public function index()
     {
-        return FundClusterCodeModel::all();
+        return AuthorizationCodeModel::all();
     }
 
     /**
@@ -25,27 +25,24 @@ class FundClusterCodeController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate($request, [
-
-            'description' => 'required',
-            'fund_cluster_code' => 'required',
+            'authorization_code',
+            'description'
         ]);
-        $fc = new FundClusterCodeModel();
-        $fc->fund_cluster_code = $request->fund_cluster_code;
-        $fc->description = $request->description;
-        $fc->save();
-        return response("successfuly save", 201);
+        $ac= new AuthorizationCodeModel();
+        $ac->authorization_code	= $request->authorization_code;
+        $ac->description=$request->description;
+        $ac->save();
+        return response("succes", 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FundClusterCodeModel  $fundClusterCodeModel
+     * @param  \App\Models\AuthorizationCodeModel  $authorizationCodeModel
      * @return \Illuminate\Http\Response
      */
-    public function show(FundClusterCodeModel $fundClusterCodeModel)
+    public function show(AuthorizationCodeModel $authorizationCodeModel)
     {
         //
     }
@@ -54,10 +51,10 @@ class FundClusterCodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FundClusterCodeModel  $fundClusterCodeModel
+     * @param  \App\Models\AuthorizationCodeModel  $authorizationCodeModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FundClusterCodeModel $fundClusterCodeModel)
+    public function update(Request $request, AuthorizationCodeModel $authorizationCodeModel)
     {
         //
     }
@@ -65,10 +62,10 @@ class FundClusterCodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FundClusterCodeModel  $fundClusterCodeModel
+     * @param  \App\Models\AuthorizationCodeModel  $authorizationCodeModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FundClusterCodeModel $fundClusterCodeModel)
+    public function destroy(AuthorizationCodeModel $authorizationCodeModel)
     {
         //
     }

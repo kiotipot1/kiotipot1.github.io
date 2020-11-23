@@ -28,7 +28,7 @@
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog" id="AuthorizationCode_form">
+          <div class="modal-dialog" id>
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" >
@@ -46,7 +46,7 @@
               <div class="modal-body">
                 <form
                   @submit.prevent="addAuthorizationCode()"
-                  id="AuthorizationCode_form"
+                  id="authorization_code_form"
                 >
                   <div class="form-group">
                     <label for="AuthorizationCode">Fund Category and Classification Code </label>
@@ -79,7 +79,7 @@
                     >
                       Close
                     </button>
-                    <button class="btn btn-primary" type="button">Save</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                   </div>
                 </form>
               </div>
@@ -88,6 +88,9 @@
         </div>
         <!-- ADD MajorAccountGroup MODAL-->
       </div>
+      <h4 class="ml-auto">
+      Authorization Code
+      </h4>
     </template>
     <!-- Table -->
     <div class="px-6">
@@ -99,9 +102,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="authorization_code in authorization_codes" :key="authorization_code.id">
-            <td>{{ authorization_code.authorization_code }}</td>
-            <td>{{ authorization_code.description }}</td>
+          <tr v-for="ac in authorization_codes" :key="ac.id">
+            <td>{{ ac.authorization_code }}</td>
+            <td>{{ ac.description }}</td>
           </tr>
         </tbody>
       </table>
@@ -133,48 +136,48 @@ export default {
       },
     };
   },
-  // methods: {
-  //   async addAuthorizationCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/authorization-codes,
-  //         this.authorization_code
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("authorization_code_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedAuthorizationCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
+  methods: {
+    async addAuthorizationCode() {
+      try {
+        const res = await axios.post(
+          "/api/authorization-code",
+          this.authorization_code
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+          document.getElementById("authorization_code_form").reset;
+          $("#ChartOfAccount").modal("hide");
+          Fire.$emit("addedAuthorizationCode");
+        }
+      } catch (e) {
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
+      }
+    },
 
-  //   async getAuthorizationCode() {
-  //     const res = await axios
-  //       .get("/api/authorization-codes")
-  //       .then((res) => {
-  //         this.authorization-code = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getAuthorizationCode(),
+    async getAuthorizationCode() {
+      const res = await axios
+        .get("/api/authorization-code")
+        .then((res) => {
+          this.authorization_codes = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    this.getAuthorizationCode(),
 
-  //     Fire.$on("addedAuthorizationCode", () => {
-  //       this.getAuthorizationCode();
-  //     });
-  // },
+      Fire.$on("addedAuthorizationCode", () => {
+        this.getAuthorizationCode();
+      });
+  },
 };
 </script>

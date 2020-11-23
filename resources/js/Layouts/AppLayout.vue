@@ -21,14 +21,122 @@
               >
                 Dashboard
               </jet-nav-link>
-              
+
+              <!--dropdown-->
+
+              <div class="dropdown btn-group border-opacity-0">
+                <button
+                  class="btn dropdown-toggle text-white focus:border-transparent p-0 border-transparent border-opacity-0"
+                  type="button"
+                  data-toggle="dropdown"
+                >
+                  Acounting <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#"
+                      >Master Records <span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                     <!-- <li class="dropdown-submenu">
+                        <a class="test" href="#"
+                          >Another dropdown <span class="caret"></span
+                        ></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">3rd level dropdown</a></li>
+                          <li><a href="#">3rd level dropdown</a></li>
+                        </ul>
+                      </li> -->
+                    </ul>
+                  </li>
+
+                  <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#"
+                      >Transactions <span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                     <!-- <li class="dropdown-submenu">
+                        <a class="test" href="#"
+                          >Another dropdown <span class="caret"></span
+                        ></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">3rd level dropdown</a></li>
+                          <li><a href="#">3rd level dropdown</a></li>
+                        </ul>
+                      </li> -->
+                    </ul>
+                  </li>
+
+                  <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#"
+                      >Database<span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                     <!-- <li class="dropdown-submenu">
+                        <a class="test" href="#"
+                          >Another dropdown <span class="caret"></span
+                        ></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">3rd level dropdown</a></li>
+                          <li><a href="#">3rd level dropdown</a></li>
+                        </ul>
+                      </li> -->
+                    </ul>
+                  </li>
+
+                  <li class="dropdown-submenu">
+                    <a class="test" tabindex="-1" href="#"
+                      >Reports<span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                      <li>
+                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                      </li>
+                     <!-- <li class="dropdown-submenu">
+                        <a class="test" href="#"
+                          >Another dropdown <span class="caret"></span
+                        ></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">3rd level dropdown</a></li>
+                          <li><a href="#">3rd level dropdown</a></li>
+                        </ul>
+                      </li> -->
+                    </ul>
+                  </li>
+                </ul>
+              </div>
 
               <!--master records dropdown-->
-              <div class="btn-group border-opacity-0" id="MasterRecords" style="border:none;">
+              <div
+                class="btn-group border-opacity-0"
+                id="MasterRecords"
+                style="border: none"
+              >
                 <button
                   type="button"
                   class="btn dropdown-toggle text-white focus:border-transparent p-0 border-transparent border-opacity-0"
-                  style="border:none;"
+                  style="border: none"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -38,7 +146,7 @@
                 <div
                   class="dropdown-menu flex flex-column justify-items-auto p-0 mt-24 h-auto w-48"
                 >
-                  <ul class="flex flex-column justify-items-auto ">
+                  <ul class="flex flex-column justify-items-auto">
                     <li>
                       <jet-dropdown-link
                         :href="route('responsibility-centers')"
@@ -450,7 +558,7 @@
     <!-- Page Heading -->
     <header class="bg-white shadow-sm">
       <div
-        class="max-w-7xl py-6 px-4 sm:px-6 lg:px-8 flex align-items-center h-8"
+        class="max-w-auto py-6 px-4 sm:px-6 lg:px-8 flex align-items-center h-8"
       >
         <slot name="header"> </slot>
       </div>
@@ -511,10 +619,29 @@ export default {
     },
   },
 };
+
+$(document).ready(function () {
+  $(".dropdown-submenu a.test").on("click", function (e) {
+    $(this).next("ul").toggle();
+  
+    
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
 </script>
 
 <style>
 #MasterRecords dropdown-menu ul li {
   text-decoration: none;
+}
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
 }
 </style>

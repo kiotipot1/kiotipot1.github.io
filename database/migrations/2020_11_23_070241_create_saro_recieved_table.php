@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChartOfAccountsTable extends Migration
+class CreateSaroRecievedTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateChartOfAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chart_of_accounts', function (Blueprint $table) {
+        Schema::create('saro_recieved', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('general_ledger_account_id');
+            $table->date('date_issued');
+            $table->string('saro_no');
+            $table->unsignedBigInteger('funding_source_id');
             $table->string('account_group');
             $table->string('current_noncurrent');
             $table->unsignedBigInteger('major_account_group_id');
@@ -34,6 +36,6 @@ class CreateChartOfAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chart_of_accounts');
+        Schema::dropIfExists('saro_recieved');
     }
 }

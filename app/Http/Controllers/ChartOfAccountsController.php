@@ -43,6 +43,7 @@ class ChartOfAccountsController extends Controller
             'account_group' => 'required',
             'current_noncurrent' => 'required',
             'sub_major_account_group' => 'required',
+            'enable_disable'=>'required',
 
         ]);
         $chart_of_account = new ChartOfAccountsModel();
@@ -51,6 +52,7 @@ class ChartOfAccountsController extends Controller
         $chart_of_account->current_noncurrent = $request->current_noncurrent;
         $chart_of_account->major_account_group_id = $request->major_account_group;
         $chart_of_account->sub_major_account_group_id = $request->sub_major_account_group;
+        $chart_of_account->enable_disable=$request->enable_disable;
         $chart_of_account->save();
         return response('Successfuly added the data', 201);
     }

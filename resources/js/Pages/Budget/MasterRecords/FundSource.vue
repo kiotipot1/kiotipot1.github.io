@@ -45,27 +45,38 @@
               </div>
               <div class="modal-body">
                 <form
-                  @submit.prevent="addProjectCodes()"
-                  id="AuthorizationCode_form"
+                  @submit.prevent="addFundSource()"
+                  id="fund_source_form"
                 >
                   <div class="form-group">
-                    <label for="ProjectCodes">Fund Category and Classification Code </label>
+                    <label for="fund_source_id">Fund Source ID</label>
                     <input
                       type="text"
                       class="form-control"
-                      v-model="project_code.mfo_pap_code"
-                      name="AuthorizationCode"
+                      v-model="fund_source.fund_source_id"
+                      name="fund_source_id"
                       aria-describedby="helpId"
-                      placeholder="Authorization Code"
+                      placeholder="fund_source_id"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="description">MFO/PAP Shortname</label>
+                    <label for="fund_source">Fund Source</label>
                     <input
                       type="text"
                       class="form-control"
-                      v-model="project_code.mfo_pap_shortname"
-                      name="MFO/PAP Shortname"
+                      v-model="fund_source.fund_source"
+                      name="fund_source"
+                      aria-describedby="helpId"
+                      placeholder="fund_source"
+                    />
+                  </div>
+                     <div class="form-group">
+                    <label for="description">Description</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="fund_source.fund_source_description"
+                      name="description"
                       aria-describedby="helpId"
                       placeholder="description"
                     />
@@ -79,7 +90,7 @@
                     >
                       Close
                     </button>
-                    <button class="btn btn-primary" type="button">Save</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                   </div>
                 </form>
               </div>
@@ -88,24 +99,25 @@
         </div>
         <!-- ADD MajorAccountGroup MODAL-->
       </div>
+      <h4 class="ml-auto">Fund Source</h4>
     </template>
     <!-- Table -->
     <div class="px-6">
       <table class="table table-striped overflow-auto">
         <thead>
           <tr>
-            <th scope="col">MFO/PAP ID</th>
-            <th scope="col">MFO/PAP code</th>
-            <th scope="col">MFO/PAP shortname</th>
-            <th scope="col">MFO/PAP</th>
+            <th scope="col">Fund Source ID</th>
+            <th scope="col">Fund Source</th>
+            <th scope="col">Description</th>
+            
           </tr>
         </thead>
         <tbody>
-          <tr v-for="pc in project_codes" :key="pc.id">
-            <td>{{ pc.id }}</td>
-            <td>{{ pc.mfo_pap_code }}</td>
-            <td>{{ pc.mfo_pap_shortname }}</td>
-            <td>{{ pc.mfo_pap }}</td>
+          <tr v-for="fs in fund_sources" :key="fs.id">
+            
+            <td>{{ fs.fund_source_id }}</td>
+            <td>{{ fs.fund_source }}</td>
+            <td>{{ fs.fund_source_description }}</td>
           </tr>
         </tbody>
       </table>
@@ -130,57 +142,58 @@ export default {
   },
   data() {
     return {
-      project_codes: [],
-      project_code: {
+      fund_sources: [],
+      fund_source: {
 
-        mfo_pap_code:0,
-        mfo_pap_shortname: "",
-        mfo_pap:""
+        fund_source_id:"",
+        fund_source: "",
+        fund_source_description:""
       },
     };
   },
-  // methods: {
-  //   async addProjectCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/project-codes,
-  //         this.project_code
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("project_code_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedProjectCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
+  methods: {
+    async addFundSource() {
+      console.log(this.fund_source);
+      try {
+        const res = await axios.post(
+          "/api/fund-source",
+          this.fund_source
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+          document.getElementById("fund_source_form").reset();
+          $("#ChartOfAccount").modal("hide");
+          Fire.$emit("addedFundSource");
+        }
+      } catch (e) {
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
+      }
+    },
 
-  //   async getProjectCode() {
-  //     const res = await axios
-  //       .get("/api/project-codes")
-  //       .then((res) => {
-  //         this.project-code = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getProjectCode(),
+    async getFundSource() {
+      const res = await axios
+        .get("/api/fund-source")
+        .then((res) => {
+          this.fund_sources = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    this.getFundSource(),
 
-  //     Fire.$on("addProjectCode", () => {
-  //       this.getProjectCode();
-  //     });
-  // },
+      Fire.$on("addedFundSource", () => {
+        this.getFundSource();
+      });
+  },
 };
 </script>

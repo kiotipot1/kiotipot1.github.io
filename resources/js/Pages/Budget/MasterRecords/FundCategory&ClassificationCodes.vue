@@ -50,7 +50,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      v-model="FCCCode.FCCCode_id"
+                      v-model="FCCCode.fund_category_id"
                       name="FCCCodes.id"
                       aria-describedby="helpId"
                       placeholder="Fund_cluster_code"
@@ -76,16 +76,14 @@
                     <input
                       type="text"
                       class="form-control"
-                      v-model="FCCCode.description"
+                      v-model="FCCCode.fund_category_code"
                       name="FCCCode"
                       aria-describedby="helpId"
                       placeholder="FCCCode"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="FCCCode.nsac"
-                      >Existing NSACS Fund  Code</label
-                    >
+                    <label for="FCCCode.nsac">Existing NSACS Fund Code</label>
                     <input
                       type="text"
                       class="form-control"
@@ -104,7 +102,7 @@
                     >
                       Close
                     </button>
-                    <button class="btn btn-primary" type="button">Save</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                   </div>
                 </form>
               </div>
@@ -113,6 +111,7 @@
         </div>
         <!-- ADD MajorAccountGroup MODAL-->
       </div>
+      <h4 class="ml-auto">Fund Category and Classification Codes</h4>
     </template>
     <!-- Table -->
     <div class="px-6">
@@ -127,10 +126,10 @@
         </thead>
         <tbody>
           <tr v-for="fccc in FCCCodes" :key="fccc.id">
-            <td>{{ fccc.id }}</td>
-            <td>{{ fccc.description}}</td>
-            <td>{{fccc.fccc_code}}</td>
-            <td>{{fccc.nsacs}}</td>
+            <td>{{ fccc.fund_category_id }}</td>
+            <td>{{ fccc.description }}</td>
+            <td>{{ fccc.fund_category_code }}</td>
+            <td>{{ fccc.nsac }}</td>
           </tr>
         </tbody>
       </table>
@@ -157,55 +156,56 @@ export default {
     return {
       FCCCodes: [],
       FCCCode: {
-        fccc_code: 0,
+        fund_category_id: 0,
         description: "",
-        nsacs:"",
-
+        fund_category_code: "",
+        nsacs: "",
+        
       },
     };
   },
-  // methods: {
-  //   async addFCCCode() {
-  //     try {
-  //       const res = await axios.post(
-  //         "api/fund-category-cluster-codes,
-  //         this.FCCCode
-  //       );
-  //       console.log(res);
-  //       if (res.status === 201) {
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: res.data,
-  //         });
-  //         document.getElementById("FCCCodes_form").reset;
-  //         $("#ChartOfAccount").modal("hide");
-  //         Fire.$emit("addedFCCCode");
-  //       }
-  //     } catch (e) {
-  //       Toast.fire({
-  //         icon: "error",
-  //         title: e,
-  //       });
-  //     }
-  //   },
+  methods: {
+    async addFCCCode() {
+      try {
+        const res = await axios.post(
+          "/api/fund-category-cluster-code",
+          this.FCCCode
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+          document.getElementById("FCCCodes_form").reset;
+          $("#ChartOfAccount").modal("hide");
+          Fire.$emit("addedFCCCode");
+        }
+      } catch (e) {
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
+      }
+    },
 
-  //   async getFCCCodes() {
-  //     const res = await axios
-  //       .get("/api/remittance")
-  //       .then((res) => {
-  //         this.FCCCodes = res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-  // created() {
-  //   this.getFCCCodes(),
-
-  //     Fire.$on("addedFCCCode", () => {
-  //       this.getFCCCodes();
-  //     });
-  // },
+    async getFCCCodes() {
+      const res = await axios
+        .get("/api/fund-category-cluster-code")
+        .then((res) => {
+          this.FCCCodes = res.data;
+          console.log(this.FCCCodes);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    this.getFCCCodes(),
+      Fire.$on("addedFCCCode", () => {
+        this.getFCCCodes();
+      });
+  },
 };
 </script>
