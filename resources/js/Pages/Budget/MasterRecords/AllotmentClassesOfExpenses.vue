@@ -78,6 +78,7 @@
                     name="SubMajorAccountGroup"
                     aria-describedby="helpId"
                     placeholder="SubMajorAccountGroup"
+                    id="sub_major_account_group_form"
                   />
                 </div>
                 <button
@@ -100,7 +101,7 @@
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog">
+          <div class="modal-dialog" id="general_ledger_accounts_form">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -123,6 +124,7 @@
                     name="GeneralLedgerAccount"
                     aria-describedby="helpId"
                     placeholder="GeneralLedgerAccount"
+                    id="general_ledger_accounts_form"
                   />
                 </div>
                 <button
@@ -167,6 +169,7 @@
                     name="MajorAccountGroup"
                     aria-describedby="helpId"
                     placeholder="MajorAccountGroup"
+                    id="major_account_group_form"
                   />
                 </div>
                 <button
@@ -206,67 +209,98 @@
               </div>
 
               <div class="modal-body">
-                <form @submit.prevent="addChartOfAccounts()">
+                <form
+                  @submit.prevent="addChartOfAccounts()"
+                  id="chart_of_accounts_form"
+                >
                   <div class="form-group">
-                    <label for="GeneralLedgerAccount"></label>
+                    <label for="GeneralLedgerAccount"
+                      >General Ledger Account</label
+                    >
                     <select
                       class="form-control"
                       name="GeneralLedgerAccount"
                       id="GeneralLedgerAccount"
+                      v-model="chart_of_account.general_ledger_account"
                     >
-                      <option selected disable>General Ledger Account</option>
-                      <option value=""></option>
+                      <option selected disabled>General Ledger Account</option>
+                      <option
+                        :value="gla.id"
+                        v-for="gla in general_ledger_accounts"
+                        :key="gla.id"
+                      >
+                        {{ gla.general_ledger_account_name }}
+                      </option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="AccountGroup"></label>
+                    <label for="AccountGroup"> Account Group</label>
                     <select
                       class="form-control"
                       name="AccountGroup"
                       id="AccountGroup"
+                      v-model="chart_of_account.account_group"
                     >
-                      <option selected disable>Account Group</option>
-                      <option value=""></option>
+                      <option selected disabled>Account Group</option>
+                      <option value="accsample">accsample</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="Current_noncurrent"></label>
+                    <label for="Current_noncurrent">Current/Noncurrent</label>
                     <select
                       class="form-control"
                       name="Current_noncurrent"
                       id="Current_noncurrent"
+                      v-model="chart_of_account.current_noncurrent"
                     >
-                      <option selected disable>Current/Noncurrent</option>
-                      <option value=""></option>
+                      <option selected disabled>Current/Noncurrent</option>
+                      <option value="sample">sample</option>
                     </select>
                   </div>
+
                   <div class="form-group">
-                    <label for="MajorAccountGroup"></label>
+                    <label for="MajorAccountGroup">Major Account Group</label>
                     <select
                       class="form-control"
                       name="MajorAccountGroup"
                       id="MajorAccountGroup"
+                      v-model="chart_of_account.major_account_group"
                     >
-                      <option selected disable>Major Account Group</option>
-                      <option value=""></option>
+                      <option selected disabled>Major Account Group</option>
+                      <option
+                        :value="mag.id"
+                        v-for="mag in major_account_groups"
+                        :key="mag.id"
+                      >
+                        {{ mag.major_account_name }}
+                      </option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="SubMajorAccountGroup"></label>
+                    <label for="SubMajorAccountGroup">
+                      Sub Major Account Group</label
+                    >
                     <select
                       class="form-control"
                       name="SubMajorAccountGroup"
                       id="SubMajorAccountGroup"
+                      v-model="chart_of_account.sub_major_account_group"
                     >
-                      <option selected disable>Sub Major Account Group</option>
-                      <option value=""></option>
+                      <option selected disabled>Sub Major Account Group</option>
+                      <option
+                        :value="smag.id"
+                        v-for="smag in sub_major_account_groups"
+                        :key="smag.id"
+                      >
+                        {{ smag.sub_major_account_name }}
+                      </option>
                     </select>
                   </div>
 
                   <div class="d-flex">
                     <button
                       type="button"
-                      class="btn btn-secondary ml-auto"
+                      class="btn btn-secondary ml-auto mr-2"
                       data-dismiss="modal"
                     >
                       Close
@@ -292,17 +326,17 @@
             <th scope="col">Account Group</th>
             <th scope="col">Current/Noncurrent</th>
             <th scope="col">Major Account Group</th>
-            <th scope="col">Sub Najor Account Group</th>
+            <th scope="col">Sub Major Account Group</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="chart in chart_of_accounts" :key="chart.id">
             <td>{{ chart.id }}</td>
-            <td>{{ chart.general_ledger_account_id }}</td>
+            <td>{{ chart.general_ledger_account_name }}</td>
             <td>{{ chart.account_group }}</td>
             <td>{{ chart.current_noncurrent }}</td>
-            <td>{{ chart.major_account_group_id }}</td>
-            <td>{{ chart.sub_major_account_group_id }}</td>
+            <td>{{ chart.major_account_name }}</td>
+            <td>{{ chart.sub_major_account_name }}</td>
           </tr>
         </tbody>
       </table>
@@ -351,17 +385,29 @@ export default {
   },
   methods: {
     async addChartOfAccounts() {
-      const res = await axios.post(
-        "/api/chartofaccounts",
-        this.chart_of_account
-      );
-      if (res.status === 201) {
+      try {
+        const res = await axios.post(
+          "api/chart-of-account",
+          this.chart_of_account
+        );
+        console.log(res);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: res.data,
+          });
+          document.getElementById("chart_of_accounts_form").reset;
+          $("#ChartOfAccount").modal("hide");
+          Fire.$emit("addedChart");
+        }
+      } catch (e) {
         Toast.fire({
-          icon: "success",
-          title: res.data,
+          icon: "error",
+          title: e,
         });
       }
     },
+
     async addGeneralLedgerAccount() {
       try {
         const res = await axios.post(
@@ -374,13 +420,19 @@ export default {
             icon: "success",
             title: res.data,
           });
+          document.getElementById("general_ledger_accounts_form").reset;
+          $("#GeneralLedgerAccount").modal("hide");
+          Fire.$emit("addedGeneralLedgerAccount");
         }
       } catch (e) {
         console.log(e);
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
       }
     },
     async addMajorAccountGroup() {
-      console.log(this.major_account_group);
       try {
         const res = await axios.post(
           "api/major-account-group",
@@ -392,9 +444,16 @@ export default {
             icon: "success",
             title: res.data,
           });
+          document.getElementById("major_account_group_form").reset;
+          $("#MajorAccountGroup").modal("hide");
+          Fire.$emit("addedMajorAccountGroup");
         }
       } catch (e) {
         console.log(e);
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
       }
     },
 
@@ -410,18 +469,27 @@ export default {
             icon: "success",
             title: res.data,
           });
+
+          document.getElementById("sub_major_account_group_form").reset;
+          $("#SubMajorAccountGroup").modal("hide");
+          Fire.$emit("addedSubMajorAccountGroup");
         }
       } catch (e) {
         console.log(e);
+        Toast.fire({
+          icon: "error",
+          title: e,
+        });
       }
     },
 
     //get data functions
     async getChartOfAccounts() {
       const res = await axios
-        .get("/api/chartofaccounts")
+        .get("/api/chart-of-account")
         .then((res) => {
           this.chart_of_accounts = res.data;
+          console.log(this.chart_of_accounts);
         })
         .catch((err) => {
           console.log(err);
@@ -429,7 +497,7 @@ export default {
     },
     async getGeneralLedgerAccount() {
       const res = await axios
-        .get("/api/generalledgeraccount")
+        .get("/api/general-ledger-account")
         .then((res) => {
           this.general_ledger_accounts = res.data;
         })
@@ -439,7 +507,7 @@ export default {
     },
     async getMajorAccountGroup() {
       const res = await axios
-        .get("/api/majoraccountgroup")
+        .get("/api/major-account-group")
         .then((res) => {
           this.major_account_groups = res.data;
         })
@@ -449,7 +517,7 @@ export default {
     },
     async getSubMajorAccountGroup() {
       const res = await axios
-        .get("/api/submajoraccountgroup")
+        .get("/api/sub-major-account-group")
         .then((res) => {
           this.sub_major_account_groups = res.data;
         })
@@ -457,6 +525,24 @@ export default {
           console.log(err);
         });
     },
+  },
+  created() {
+    this.getChartOfAccounts(),
+      this.getGeneralLedgerAccount(),
+      this.getMajorAccountGroup(),
+      this.getSubMajorAccountGroup(),
+      Fire.$on("addedChart", () => {
+        this.getChartOfAccounts();
+      });
+      Fire.$on("addedGeneralLedgerAccount", () => {
+      this.getGeneralLedgerAccount();
+    });
+    Fire.$on("addedMajorAccountGroup", () => {
+      this.getMajorAccountGroup();
+    }),
+      Fire.$on("addedSubMajorAccountGroup", () => {
+        this.getSubMajorAccountGroup();
+      });
   },
 };
 </script>

@@ -13,21 +13,159 @@
             </div>
 
             <!-- Navigation Links -->
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" >
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
               <jet-nav-link
                 :href="route('dashboard')"
                 :active="route().current('dashboard')"
-                class="text-white"
+                class="text-white text-decoration-none"
               >
                 Dashboard
               </jet-nav-link>
-              <jet-nav-link
-                :href="route('chartofaccounts')"
-                :active="route().current('chartofaccounts')"
-                class="text-white"
-              >
-                ChartOfAccount
-              </jet-nav-link>
+              
+
+              <!--master records dropdown-->
+              <div class="btn-group border-opacity-0" id="MasterRecords" style="border:none;">
+                <button
+                  type="button"
+                  class="btn dropdown-toggle text-white focus:border-transparent p-0 border-transparent border-opacity-0"
+                  style="border:none;"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Budget Master Records
+                </button>
+                <div
+                  class="dropdown-menu flex flex-column justify-items-auto p-0 mt-24 h-auto w-48"
+                >
+                  <ul class="flex flex-column justify-items-auto ">
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('responsibility-centers')"
+                        :active="route().current('responsibility-centers')"
+                        class="text-decoration-none"
+                      >
+                        Responsibility Center
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('fund-cluster-codes')"
+                        :active="route().current('fund-cluster-codes')"
+                        class="text-decoration-none"
+                      >
+                        Fund Cluster Codes
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('financing-source-codes')"
+                        :active="route().current('financing-source-codes')"
+                        class="text-decoration-none"
+                      >
+                        Finance Source Codes
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('authorization-codes')"
+                        :active="route().current('authorization-codes')"
+                        class="text-decoration-none"
+                      >
+                        Authorization Codes
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('fund-category&classification-codes')"
+                        :active="
+                          route().current('fund-category&classification-codes')
+                        "
+                        class="text-decoration-none"
+                      >
+                        Fund Category and Classification Codes
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('project-codes')"
+                        :active="route().current('project-codes')"
+                        class="text-decoration-none"
+                      >
+                        MFO/PAP Codes(Project Codes)
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('allotment-classes-of-expenses')"
+                        :active="
+                          route().current('allotment-classes-of-expenses')
+                        "
+                        class="text-decoration-none"
+                      >
+                        Allotment Classes of Expenses
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('program-codes')"
+                        :active="route().current('chartofaccounts')"
+                        class="text-decoration-none"
+                      >
+                        Program Codes
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('fund-source')"
+                        :active="route().current('fund-source')"
+                        class="text-decoration-none"
+                      >
+                        Fund Source
+                      </jet-dropdown-link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!--Accounting Master Records DropDown-->
+              <div class="btn-group" id="MasterRecords">
+                <button
+                  type="button"
+                  class="btn dropdown-toggle text-white"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Accounting Master Records
+                </button>
+                <div
+                  class="dropdown-menu flex flex-column justify-items-auto p-0 mt-24 h-auto w-48"
+                >
+                  <ul class="flex flex-column justify-items-auto">
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('chartofaccounts')"
+                        :active="route().current('chartofaccounts')"
+                        class="text-white text-decoration-none"
+                      >
+                        ChartOfAccount
+                      </jet-dropdown-link>
+                    </li>
+                    <li>
+                      <jet-dropdown-link
+                        :href="route('remittances')"
+                        :active="route().current('remittances')"
+                        class="text-decoration-none"
+                      >
+                        Remittances
+                      </jet-dropdown-link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!--dropdown-->
             </div>
           </div>
 
@@ -49,7 +187,7 @@
 
                   <button
                     v-else
-                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
+                    class="flex items-center text-sm font-medium text-gray-500 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
                   >
                     <div>{{ $page.user.name }}</div>
 
@@ -312,7 +450,7 @@
     <!-- Page Heading -->
     <header class="bg-white shadow-sm">
       <div
-        class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex align-items-center h-8"
+        class="max-w-7xl py-6 px-4 sm:px-6 lg:px-8 flex align-items-center h-8"
       >
         <slot name="header"> </slot>
       </div>
@@ -374,3 +512,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#MasterRecords dropdown-menu ul li {
+  text-decoration: none;
+}
+</style>

@@ -15,6 +15,7 @@ window.Toast = Swal.mixin({
    timer: 3000,
    timerProgressBar: true
 })
+window.Fire= new Vue()
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
