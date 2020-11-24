@@ -12,7 +12,7 @@ class FundSourceModel extends Model
     protected $table = 'fund_source';
     protected $fillable = [
 
-        'fund_source_id',
+        
         'fund_source',
         'fund_source_description'
 

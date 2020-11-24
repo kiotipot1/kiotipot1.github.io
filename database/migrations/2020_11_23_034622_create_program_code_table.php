@@ -16,8 +16,7 @@ class CreateProgramCodeTable extends Migration
         Schema::create('program_code', function (Blueprint $table) {
             $table->id();
             $table->integer('program_code_id')->unique();
-            $table->integer('program_code')->unique();
-
+            $table->string('program_code')->unique();
             $table->string('program_title');
         });
     }

@@ -26,15 +26,13 @@ class ProjectCodeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id',
-            'mfo_id',
+         
             'mfo_code',
             'mfo_shortname',
             'mfo_description'
         ]);
         $pc = new ProjectCodeModel();
-        $pc->id = $request->id;
-        $pc->mfo_id=$request->mfo_id;
+     
         $pc->mfo_code=$request->mfo_code;
         $pc->mfo_shortname=$request->mfo_shortname;
         $pc->mfo_description=$request->mfo_description;

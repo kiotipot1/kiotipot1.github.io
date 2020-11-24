@@ -12,7 +12,7 @@
           type="button"
           class="btn btn-info"
           data-toggle="modal"
-          data-target="#AuthorizationCode"
+          data-target="#Allotment"
           data-whatever="@getbootstrap"
         >
           add in Chart
@@ -23,7 +23,7 @@
         <!-- ADD GeneralLedgerAccount MODAL-->
         <div
           class="modal fade"
-          id="AuthorizationCode"
+          id="Allotment"
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -54,6 +54,7 @@
                       v-model="allotment_class.allotment_id"
                       name="allotement_class"
                       placeholder="Allotment Class ID"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -65,6 +66,7 @@
                       name="uacs"
                       aria-describedby="helpId"
                       placeholder="UACS Code"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -78,6 +80,7 @@
                       name="allotment_class"
                       aria-describedby="helpId"
                       placeholder="allotment_class"
+                      required
                     />
                   </div>
                  
@@ -162,8 +165,8 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("allotment_class_form").reset;
-          $("#ChartOfAccount").modal("hide");
+          document.getElementById("allotment_class_form").reset();
+          $("#Allotment").modal("hide");
           Fire.$emit("addedAllotmentClass");
         }
       } catch (e) {

@@ -70,5 +70,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/Budget/MasterRecords/fund
     return Inertia\Inertia::render('Budget/MasterRecords/FundSource');
 })->name('fund-source');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/Budget/Transactions/saro-recieved', function () {
+    return Inertia\Inertia::render('Budget/Transactions/SaroRecieved');
+})->name('saro-recieved');
+
 
 

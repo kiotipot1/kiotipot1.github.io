@@ -15,8 +15,8 @@ class CreateMfoProjectCodeTable extends Migration
     {
         Schema::create('mfo_project_code', function (Blueprint $table) {
             $table->id();
-            $table->integer('mfo_id')->unique();
-            $table->string('mfo_code');
+            
+            $table->bigInteger('mfo_code')->unique();
             $table->string('mfo_shortname');
             $table->string('mfo_description');
         });

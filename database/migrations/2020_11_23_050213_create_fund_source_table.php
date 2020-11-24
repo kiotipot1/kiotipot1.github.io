@@ -15,8 +15,8 @@ class CreateFundSourceTable extends Migration
     {
         Schema::create('fund_source', function (Blueprint $table) {
             $table->id();
-            $table->integer('fund_source_id')->unique();
-            $table->string('fund_source')->unique();
+            // $table->integer('fund_source_id')->unique();
+            $table->string('fund_source_code')->unique();
 
             $table->string('fund_source_description');
         });

@@ -15,7 +15,7 @@ use App\Http\Controllers\GeneralLedgerAccountController;
 use App\Http\Controllers\ProgramCodeController;
 use App\Http\Controllers\ProjectCodeController;
 use App\Http\Controllers\RemittanceController;
-
+use App\Http\Controllers\SaroRecievedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +54,5 @@ Route::resource('allotment-class', AllotmentClassController::class);
 Route::resource('program-code', ProgramCodeController::class);
 
 Route::resource('fund-source', FundSourceController::class);
+
+Route::resource('saro-recieve', SaroRecievedController::class);

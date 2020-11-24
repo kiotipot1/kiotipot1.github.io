@@ -25,19 +25,19 @@ class FundSourceController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[
-            'fund_source_id',	
-            'fund_source'	,
+        $this->validate($request, [
+            
+            'fund_source',
             'fund_source_description'
-         ]);
-         $fs= new FundSourceModel();
-         $fs->fund_source_id= $request->fund_source_id;
-            $fs->fund_source= $request->fund_source;
-            $fs->fund_source_description= $request->fund_source_description;
-            $fs->save();
+        ]);
+        $fs = new FundSourceModel();
+       
+        $fs->fund_source_code = $request->fund_source;
+        $fs->fund_source_description = $request->fund_source_description;
+        $fs->save();
 
-            return response("success",201);
-         }
+        return response("success", 201);
+    }
     /**
      * Display the specified resource.
      *

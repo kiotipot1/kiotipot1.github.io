@@ -57,6 +57,7 @@
                       name="AuthorizationCode"
                       aria-describedby="helpId"
                       placeholder="Authorization Code"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -68,6 +69,7 @@
                       name="description"
                       aria-describedby="helpId"
                       placeholder="description"
+                      required
                     />
                   </div>
 
@@ -149,8 +151,8 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("authorization_code_form").reset;
-          $("#ChartOfAccount").modal("hide");
+          document.getElementById("authorization_code_form").reset();
+          $("#AuthorizationCode").modal("hide");
           Fire.$emit("addedAuthorizationCode");
         }
       } catch (e) {

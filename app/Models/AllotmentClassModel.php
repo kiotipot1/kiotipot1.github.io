@@ -15,5 +15,5 @@ class AllotmentClassModel extends Model
         'allotment_id',
         'uacs_code',
         'allotment_class',
-    ];
+    ]; 
 }

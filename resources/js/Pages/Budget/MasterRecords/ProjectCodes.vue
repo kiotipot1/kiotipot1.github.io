@@ -47,19 +47,7 @@
                   id="project_code_form"
                 >
                   
-                  <div class="form-group">
-                    <label for="ProjectCodes"
-                      >MFO/PAP ID
-                    </label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="project_code.mfo_id"
-                      name="AuthorizationCode"
-                      aria-describedby="helpId" 
-                      placeholder="MFO/PAP ID"
-                    />
-                  </div>
+                 
                     <div class="form-group">
                     <label for="description">MFO/PAP Code</label>
                     <input
@@ -130,7 +118,7 @@
         </thead>
         <tbody>
           <tr v-for="pc in project_codes" :key="pc.id">
-            <td>{{ pc.mfo_id }}</td>
+            <td>{{ pc.id }}</td>
             <td>{{ pc.mfo_code }}</td>
             <td>{{ pc.mfo_shortname }}</td>
             <td>{{ pc.mfo_description }}</td>
@@ -161,7 +149,7 @@ export default {
     return {
       project_codes: [],
       project_code: {
-        mfo_id:"",
+       
         mfo_code: "",
         mfo_shortname: "",
         mfo_description: "",
@@ -178,8 +166,8 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("project_code_form").reset;
-          $("#ChartOfAccount").modal("hide");
+          document.getElementById("project_code_form").reset();
+          $("#ProjectCodes").modal("hide");
           Fire.$emit("addedProjectCode");
         }
       } catch (e) {

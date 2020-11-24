@@ -54,6 +54,7 @@
                       v-model="program_code.program_code_id"
                       name="program_code_id"
                       placeholder="program_code_id"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -65,6 +66,7 @@
                       name="program_title"
                       aria-describedby="helpId"
                       placeholder="program_title "
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -78,6 +80,7 @@
                       name="program_code"
                       aria-describedby="helpId"
                       placeholder="program_code"
+                      required
                     />
                   </div>
                  
@@ -162,7 +165,7 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("program_code_form").reset;
+          document.getElementById("program_code_form").reset();
           $("#ProgramCOde").modal("hide");
           Fire.$emit("addedProgramCode");
         }

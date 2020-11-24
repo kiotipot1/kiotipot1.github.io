@@ -54,6 +54,7 @@
                       name="FCCCodes.id"
                       aria-describedby="helpId"
                       placeholder="Fund_cluster_code"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -67,6 +68,7 @@
                       name="FCCCode.description"
                       aria-describedby="helpId"
                       placeholder="description"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -80,6 +82,7 @@
                       name="FCCCode"
                       aria-describedby="helpId"
                       placeholder="FCCCode"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -91,6 +94,7 @@
                       name="FCCCode.nsac"
                       aria-describedby="helpId"
                       placeholder="FCCCode.nsac"
+                      required
                     />
                   </div>
 
@@ -156,7 +160,7 @@ export default {
     return {
       FCCCodes: [],
       FCCCode: {
-        fund_category_id: 0,
+        fund_category_id: "",
         description: "",
         fund_category_code: "",
         nsacs: "",
@@ -177,8 +181,8 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("FCCCodes_form").reset;
-          $("#ChartOfAccount").modal("hide");
+          document.getElementById("FCCCodes_form").reset();
+          $("#FCCCodes").modal("hide");
           Fire.$emit("addedFCCCode");
         }
       } catch (e) {

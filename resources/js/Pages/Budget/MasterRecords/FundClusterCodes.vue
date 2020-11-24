@@ -57,6 +57,7 @@
                       name="description"
                       aria-describedby="helpId"
                       placeholder="fundClusterCode"
+                      required
                     />
                   </div>
                   
@@ -69,6 +70,7 @@
                       name="description"
                       aria-describedby="helpId"
                       placeholder="description"
+                      required
                     />
                   </div>
 

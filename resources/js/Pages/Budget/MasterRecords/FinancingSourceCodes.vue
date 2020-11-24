@@ -55,6 +55,7 @@
                       name="financing_source_code"
                       aria-describedby="helpId"
                       placeholder="Payee ID"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -66,6 +67,7 @@
                       name="description"
                       aria-describedby="helpId"
                       placeholder="description"
+                      required
                     />
                   </div>
                   
@@ -150,8 +152,8 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("financing_source_code_form").reset;
-          $("#ChartOfAccount").modal("hide");
+          document.getElementById("financing_source_code_form").reset();
+          $("#FinancingSourceCodes").modal("hide");
           Fire.$emit("addedFinancingSourceCode");
         }
       } catch (e) {

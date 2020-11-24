@@ -12,7 +12,7 @@
           type="button"
           class="btn btn-info"
           data-toggle="modal"
-          data-target="#ProjectCodes"
+          data-target="#FundSource"
           data-whatever="@getbootstrap"
         >
           add in Chart
@@ -23,7 +23,7 @@
         <!-- ADD GeneralLedgerAccount MODAL-->
         <div
           class="modal fade"
-          id="ProjectCodes"
+          id="FundSource"
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -48,17 +48,7 @@
                   @submit.prevent="addFundSource()"
                   id="fund_source_form"
                 >
-                  <div class="form-group">
-                    <label for="fund_source_id">Fund Source ID</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="fund_source.fund_source_id"
-                      name="fund_source_id"
-                      aria-describedby="helpId"
-                      placeholder="fund_source_id"
-                    />
-                  </div>
+             
                   <div class="form-group">
                     <label for="fund_source">Fund Source</label>
                     <input
@@ -68,6 +58,7 @@
                       name="fund_source"
                       aria-describedby="helpId"
                       placeholder="fund_source"
+                      required
                     />
                   </div>
                      <div class="form-group">
@@ -79,6 +70,7 @@
                       name="description"
                       aria-describedby="helpId"
                       placeholder="description"
+                      required
                     />
                   </div>
 
@@ -115,8 +107,8 @@
         <tbody>
           <tr v-for="fs in fund_sources" :key="fs.id">
             
-            <td>{{ fs.fund_source_id }}</td>
-            <td>{{ fs.fund_source }}</td>
+            <td>{{ fs.id }}</td>
+            <td>{{ fs.fund_source_code }}</td>
             <td>{{ fs.fund_source_description }}</td>
           </tr>
         </tbody>
@@ -145,7 +137,7 @@ export default {
       fund_sources: [],
       fund_source: {
 
-        fund_source_id:"",
+      
         fund_source: "",
         fund_source_description:""
       },
@@ -166,7 +158,7 @@ export default {
             title: res.data,
           });
           document.getElementById("fund_source_form").reset();
-          $("#ChartOfAccount").modal("hide");
+          $("#FundSource").modal("hide");
           Fire.$emit("addedFundSource");
         }
       } catch (e) {

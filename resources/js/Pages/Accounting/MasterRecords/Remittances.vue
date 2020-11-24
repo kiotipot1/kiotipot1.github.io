@@ -54,6 +54,7 @@
                       name="description"
                       aria-describedby="helpId"
                       placeholder="description"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -65,6 +66,7 @@
                       name="payee_id"
                       aria-describedby="helpId"
                       placeholder="Payee ID"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -76,6 +78,7 @@
                       name="payee_name"
                       aria-describedby="helpId"
                       placeholder="Payee Name"
+                      required
                     />
                   </div>
                   <div class="flex">

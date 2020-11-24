@@ -22,113 +22,281 @@
                 Dashboard
               </jet-nav-link>
 
-              <!--dropdown-->
-
-              <div class="dropdown btn-group border-opacity-0">
+              <!--dropdown Acounting-->
+              <div
+                class="dropdown text-white text-decoration-none flex align-items-center"
+              >
                 <button
-                  class="btn dropdown-toggle text-white focus:border-transparent p-0 border-transparent border-opacity-0"
+                  class="btn dropdown-toggle text-white text-decoration-none min-h-full focus:outline-white"
                   type="button"
+                  id="dropdownMenu1"
                   data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  Acounting <span class="caret"></span>
+                  Accounting
                 </button>
-                <ul class="dropdown-menu">
+                <ul
+                  class="dropdown-menu multi-level text-decoration-none"
+                  role="menu"
+                  aria-labelledby="dropdownMenu"
+                >
+                  <!-- <li class="dropdown-item"><a href="#">Some action</a></li>
+                  <li class="dropdown-item">
+                    <a href="#">Some other action</a>
+                  </li>-->
+                  <li class="dropdown-divider"></li>
                   <li class="dropdown-submenu">
-                    <a class="test" tabindex="-1" href="#"
-                      >Master Records <span class="caret"></span
-                    ></a>
+                    <a class="dropdown-item" tabindex="-1" href="#"
+                      >Master Records</a
+                    >
                     <ul class="dropdown-menu">
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                     <!-- <li class="dropdown-submenu">
-                        <a class="test" href="#"
-                          >Another dropdown <span class="caret"></span
-                        ></a>
+                      <!-- <li class="dropdown-submenu">
+                        <a class="dropdown-item" href="#">Even More..</a>
                         <ul class="dropdown-menu">
-                          <li><a href="#">3rd level dropdown</a></li>
-                          <li><a href="#">3rd level dropdown</a></li>
+                          <li class="dropdown-item">
+                            <a href="#">3rd level</a>
+                          </li>
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">another level</a>
+                            <ul class="dropdown-menu">
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-item">
+                            <a href="#">3rd level</a>
+                          </li>
                         </ul>
                       </li> -->
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('chartofaccounts')"
+                          :active="route().current('chartofaccounts')"
+                          class="text-white text-decoration-none"
+                        >
+                          ChartOfAccount
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('remittances')"
+                          :active="route().current('remittances')"
+                          class="text-decoration-none"
+                        >
+                          Remittances
+                        </jet-dropdown-link>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- BudGet DROPDOWN-->
+
+              <div class="dropdown flex align-items-center">
+                <button
+                  class="btn dropdown-toggle text-white text-decoration-none text-decoration-none min-h-full"
+                  type="button"
+                  id="dropdownMenu1"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Budget
+                </button>
+                <ul
+                  class="dropdown-menu multi-level"
+                  role="menu"
+                  aria-labelledby="dropdownMenu"
+                >
+                  <!-- <li class="dropdown-item"><a href="#">Some action</a></li>
+                  <li class="dropdown-item">
+                    <a href="#">Some other action</a>
+                  </li>-->
+                  <li class="dropdown-divider"></li>
+                  <!--Master Records Dropdown-->
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item" tabindex="-1" href="#"
+                      >Master Records</a
+                    >
+                    <ul class="dropdown-menu">
+                      <!-- <li class="dropdown-submenu">
+                        <a class="dropdown-item" href="#">Even More..</a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-item">
+                            <a href="#">3rd level</a>
+                          </li>
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">another level</a>
+                            <ul class="dropdown-menu">
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-item">
+                            <a href="#">3rd level</a>
+                          </li>
+                        </ul>
+                      </li> -->
+                   
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('responsibility-centers')"
+                          :active="route().current('responsibility-centers')"
+                          class="text-decoration-none"
+                        >
+                          Responsibility Center
+                        </jet-dropdown-link>
+                      </li>
+
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('fund-cluster-codes')"
+                          :active="route().current('fund-cluster-codes')"
+                          class="text-decoration-none"
+                        >
+                          Fund Cluster Codes
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('financing-source-codes')"
+                          :active="route().current('financing-source-codes')"
+                          class="text-decoration-none"
+                        >
+                          Finance Source Codes
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('authorization-codes')"
+                          :active="route().current('authorization-codes')"
+                          class="text-decoration-none"
+                        >
+                          Authorization Codes
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('fund-category&classification-codes')"
+                          :active="
+                            route().current(
+                              'fund-category&classification-codes'
+                            )
+                          "
+                          class="text-decoration-none"
+                        >
+                          Fund Category and Classification Codes
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('project-codes')"
+                          :active="route().current('project-codes')"
+                          class="text-decoration-none"
+                        >
+                          MFO/PAP Codes(Project Codes)
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('allotment-classes-of-expenses')"
+                          :active="
+                            route().current('allotment-classes-of-expenses')
+                          "
+                          class="text-decoration-none"
+                        >
+                          Allotment Classes of Expenses
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('program-codes')"
+                          :active="route().current('chartofaccounts')"
+                          class="text-decoration-none"
+                        >
+                          Program Codes
+                        </jet-dropdown-link>
+                      </li>
+                      <li>
+                        <jet-dropdown-link
+                          :href="route('fund-source')"
+                          :active="route().current('fund-source')"
+                          class="text-decoration-none"
+                        >
+                          Fund Source
+                        </jet-dropdown-link>
+                      </li>
                     </ul>
                   </li>
 
+                  <!-- 2nd dropdown-->
                   <li class="dropdown-submenu">
-                    <a class="test" tabindex="-1" href="#"
-                      >Transactions <span class="caret"></span
-                    ></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                     <!-- <li class="dropdown-submenu">
-                        <a class="test" href="#"
-                          >Another dropdown <span class="caret"></span
-                        ></a>
+                    <a class="dropdown-item" tabindex="-1" href="#"
+                      >Transactions</a
+                    >
+                    <ul class="dropdown-menu text-decoration-none">
+                      
+                      <!-- <li class="dropdown-submenu">
+                        <a class="dropdown-item" href="#">Even More..</a>
                         <ul class="dropdown-menu">
-                          <li><a href="#">3rd level dropdown</a></li>
-                          <li><a href="#">3rd level dropdown</a></li>
+                          <li class="dropdown-item">
+                            <a href="#">3rd level</a>
+                          </li>
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">another level</a>
+                            <ul class="dropdown-menu">
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                              <li class="dropdown-item">
+                                <a href="#">4th level</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="dropdown-item">
+                            <a href="#">3rd level</a>
+                          </li>
                         </ul>
                       </li> -->
-                    </ul>
-                  </li>
+                    
 
-                  <li class="dropdown-submenu">
-                    <a class="test" tabindex="-1" href="#"
-                      >Database<span class="caret"></span
-                    ></a>
-                    <ul class="dropdown-menu">
                       <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
+                        <jet-dropdown-link
+                          :href="route('saro-recieved')"
+                          :active="route().current('saro-recieved')"
+                          class="text-decoration-none"
+                        >
+                          Records SARO Recieved
+                        </jet-dropdown-link>
                       </li>
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                     <!-- <li class="dropdown-submenu">
-                        <a class="test" href="#"
-                          >Another dropdown <span class="caret"></span
-                        ></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">3rd level dropdown</a></li>
-                          <li><a href="#">3rd level dropdown</a></li>
-                        </ul>
-                      </li> -->
-                    </ul>
-                  </li>
-
-                  <li class="dropdown-submenu">
-                    <a class="test" tabindex="-1" href="#"
-                      >Reports<span class="caret"></span
-                    ></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                      <li>
-                        <a tabindex="-1" href="#">2nd level dropdown</a>
-                      </li>
-                     <!-- <li class="dropdown-submenu">
-                        <a class="test" href="#"
-                          >Another dropdown <span class="caret"></span
-                        ></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">3rd level dropdown</a></li>
-                          <li><a href="#">3rd level dropdown</a></li>
-                        </ul>
-                      </li> -->
+                      
                     </ul>
                   </li>
                 </ul>
               </div>
 
               <!--master records dropdown-->
-              <div
+
+              <!--<div
                 class="btn-group border-opacity-0"
                 id="MasterRecords"
                 style="border: none"
@@ -234,10 +402,10 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div>-->
 
               <!--Accounting Master Records DropDown-->
-              <div class="btn-group" id="MasterRecords">
+              <!-- <div class="btn-group" id="MasterRecords">
                 <button
                   type="button"
                   class="btn dropdown-toggle text-white"
@@ -271,7 +439,7 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div>-->
 
               <!--dropdown-->
             </div>
@@ -620,28 +788,69 @@ export default {
   },
 };
 
-$(document).ready(function () {
-  $(".dropdown-submenu a.test").on("click", function (e) {
-    $(this).next("ul").toggle();
-  
-    
-    e.stopPropagation();
-    e.preventDefault();
-  });
-});
+// $(document).ready(function () {
+//   $(".dropdown-submenu a.test").on("click", function (e) {
+//     $(this).next("ul").toggle();
+
+//     e.stopPropagation();
+//     e.preventDefault();
+//   });
+// });
 </script>
 
 <style>
-#MasterRecords dropdown-menu ul li {
-  text-decoration: none;
-}
 .dropdown-submenu {
   position: relative;
+  text-decoration: none;
 }
 
-.dropdown-submenu .dropdown-menu {
+.dropdown-submenu > .dropdown-menu {
   top: 0;
+  width: 200px;
   left: 100%;
-  margin-top: -1px;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
+  text-decoration: none;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ccc;
+  margin-top: 5px;
+  margin-right: -10px;
+  text-decoration: none;
+}
+
+.dropdown-submenu:hover > a:after {
+  border-left-color: #fff;
+  text-decoration: none;
+}
+
+.dropdown-submenu.pull-left {
+  float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
+  text-decoration: none;
 }
 </style>

@@ -17,15 +17,15 @@ class CreateSaroRecievedTable extends Migration
             $table->id();
             $table->date('date_issued');
             $table->string('saro_no');
-            $table->unsignedBigInteger('funding_source_id');
-            $table->string('account_group');
-            $table->string('current_noncurrent');
-            $table->unsignedBigInteger('major_account_group_id');
-            $table->unsignedBigInteger('sub_major_account_group_id');
-
-            $table->foreign('general_ledger_account_id')->references('id')->on('general_ledger_account');
-            $table->foreign('major_account_group_id')->references('id')->on('major_account_group');
-            $table->foreign('sub_major_account_group_id')->references('id')->on('sub_major_account_group');
+            $table->unsignedBigInteger('fund_source_code');
+            $table->unsignedBigInteger('mfo_code');
+            $table->string('particulars');
+            $table->string('object_code');
+            $table->float('amount');
+           
+            $table->foreign('mfo_code')->references('id')->on('mfo_project_code');
+            $table->foreign('fund_source_code')->references('id')->on('fund_source');
+           
         });
     }
 
