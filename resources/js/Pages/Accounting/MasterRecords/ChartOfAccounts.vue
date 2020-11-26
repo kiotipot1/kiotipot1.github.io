@@ -382,9 +382,7 @@ export default {
   },
   data() {
     return {
-      enable_disable: [
-        "enable","disable"
-      ],
+      enable_disable: ["enable", "disable"],
       chart_of_accounts: [],
       chart_of_account: {
         general_ledger_account: "",
@@ -395,9 +393,9 @@ export default {
         enable_disable: "",
       },
       general_ledger_accounts: [],
-      general_ledger_account: {
-        general_ledger_account_name: "",
-      },
+        general_ledger_account: {
+          general_ledger_account_name: "",
+        },
       major_account_groups: [],
       major_account_group: {
         major_account_group_name: "",
@@ -445,7 +443,9 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("general_ledger_accounts_form").reset;
+          this.general_ledger_account= {
+          general_ledger_account_name: "",
+        },
           $("#GeneralLedgerAccount").modal("hide");
           Fire.$emit("addedGeneralLedgerAccount");
         }

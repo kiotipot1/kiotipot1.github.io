@@ -24,9 +24,13 @@ class ChartOfAccountsController extends Controller
             ->join('major_account_group', 'chart_of_accounts.major_account_group_id', '=', 'major_account_group.id')
             ->join('sub_major_account_group', 'chart_of_accounts.sub_major_account_group_id', '=', 'sub_major_account_group.id')
             ->select('chart_of_accounts.*', 'general_ledger_account.general_ledger_account_name', 'major_account_group.major_account_name', 'sub_major_account_group.sub_major_account_name')
+            
             ->get();
 
             return $chart_of_accounts;
+            // $users = DB::table('users')->paginate(15);
+
+        // return view('chartofaccounts.index', ['chartofaccounts' => $chart_of_accounts]);
     }
 
     /**

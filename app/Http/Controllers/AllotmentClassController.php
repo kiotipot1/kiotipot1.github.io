@@ -25,18 +25,29 @@ class AllotmentClassController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        // $this->validate($request, [
+        //     'allotment_id' => 'required',
+        //     'uacs_code'    => 'required',
+        //     'allotment_class'   => 'required'
+        // ]);
+
+        $validatedAttributes = $request->validate([
             'allotment_id',
-            	'uacs_code'	,
-            'allotment_class'	
+            'uacs_code',
+            'allotment_class'
         ]);
 
-        $ac= new AllotmentClassModel();
-        $ac->allotment_id=$request->allotment_id;
-        $ac->uacs_code=$request->uacs_code;
-        $ac->allotment_class=$request->allotment_class;
-        $ac->save();
-        return response ("success",201);
+        // $ac= new AllotmentClassModel();
+        // $ac->allotment_id=$request->allotment_id;
+        // $ac->uacs_code=$request->uacs_code;
+        // $ac->allotment_class=$request->allotment_class;
+        // $ac->save();
+        // return response ("success",201);
+        AllotmentClassModel::create($request()->validate([
+            'allotment_id'=>'required',
+            	'uacs_code'=>'required'	,
+            'allotment_class'=>'required'
+        ]));
     }
 
     /**
