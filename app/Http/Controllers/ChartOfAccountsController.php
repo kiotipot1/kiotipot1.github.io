@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChartOfAccountsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\DataTables\ChartOfAccountDataTable;
 
 class ChartOfAccountsController extends Controller
 {
@@ -13,21 +14,22 @@ class ChartOfAccountsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ChartOfAccountDataTable $datatable)
     {
         //return ChartOfAccountsModel::all();
 
 
 
-        $chart_of_accounts = DB::table('chart_of_accounts')
-            ->join('general_ledger_account', 'chart_of_accounts.general_ledger_account_id', '=', 'general_ledger_account.id')
-            ->join('major_account_group', 'chart_of_accounts.major_account_group_id', '=', 'major_account_group.id')
-            ->join('sub_major_account_group', 'chart_of_accounts.sub_major_account_group_id', '=', 'sub_major_account_group.id')
-            ->select('chart_of_accounts.*', 'general_ledger_account.general_ledger_account_name', 'major_account_group.major_account_name', 'sub_major_account_group.sub_major_account_name')
+        // $chart_of_accounts = DB::table('chart_of_accounts')
+        //     ->join('general_ledger_account', 'chart_of_accounts.general_ledger_account_id', '=', 'general_ledger_account.id')
+        //     ->join('major_account_group', 'chart_of_accounts.major_account_group_id', '=', 'major_account_group.id')
+        //     ->join('sub_major_account_group', 'chart_of_accounts.sub_major_account_group_id', '=', 'sub_major_account_group.id')
+        //     ->select('chart_of_accounts.*', 'general_ledger_account.general_ledger_account_name', 'major_account_group.major_account_name', 'sub_major_account_group.sub_major_account_name')
             
-            ->get();
+        //     ->get();
 
-            return $chart_of_accounts;
+            return $datatable->render('chart_of_accounts');
+      
             // $users = DB::table('users')->paginate(15);
 
         // return view('chartofaccounts.index', ['chartofaccounts' => $chart_of_accounts]);

@@ -2,32 +2,31 @@
   <app-layout>
     <div class="card">
       <div class="card-body">
-        <table id="example" class="display" style="width: 100%">
+        <table
+          id="example"
+          class="display table-striped table-bordered"
+          style="width: 100%"
+        >
           <thead>
             <tr>
-              <th scope="col">ID</th>
+              <th scope="col" class="pl-15">ID</th>
               <th scope="col">General Ledger Acount</th>
               <th scope="col">Account Group</th>
               <th scope="col">Current/Noncurrent</th>
               <th scope="col">Major Account Group</th>
               <th scope="col">Sub Major Account Group</th>
               <th scope="col">Enable/Disable</th>
-              <th scope="col">Enable/Disable</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="chart in chart_of_accounts" :key="chart.id">
               <td>{{ chart.id }}</td>
-              <td>{{ chart.general_ledger_account_name }}</td>
+              <td>{{ chart.general_ledger_account_id }}</td>
               <td>{{ chart.account_group }}</td>
               <td>{{ chart.current_noncurrent }}</td>
-              <td>{{ chart.major_account_name }}</td>
-              <td>{{ chart.sub_major_account_name }}</td>
+              <td>{{ chart.major_account_id }}</td>
+              <td>{{ chart.sub_major_account_group_id }}</td>
               <td>{{ chart.enable_disable }}</td>
-              <td>
-                <button class="btn btn-primary">update</button>
-                <button class="btn btn-danger">delete</button>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -76,22 +75,35 @@ export default {
     table() {
       this.$nextTick(() => {
         $("#example").DataTable({
-            
-          order: [[0, "desc"]],
+          pagingType: "full_numbers",
+          order: [[0, "asc"]],
           dom: "Bfrtip",
+          processing: true,
+          serverSide: true,
+          ajax: "/api/chart-of-account",
+          columns: [
+            { data: "id" },
+            { data: "general_ledger_account_id" },
+            { data: "account_group" },
+            { data: "current_noncurrent" },
+            { data: "major_account_group_id" },
+            { data: "sub_major_account_group_id" },
+            { data: "enable_disable" },
+          ],
           buttons: [
             //"copy", "excel", "pdf"
-            {
-              extend: "copyHtml5",
-              text: "copy",
-              tittleAttr: "copy",
-              className: "btn btn-secondary",
-            },
+            // {
+            //   extend: "copyHtml5",
+            //   text: "copy",
+            //   tittleAttr: "copy",
+            //   className: "btn btn-secondary",
+            // },
             {
               extend: "excelHtml5",
               text: "<i class='fas fa-file-excel'></i> Excel",
               tittleAttr: "copy",
               className: "btn btn-danger",
+              filename: "sample",
             },
             {
               extend: "csvHtml5",
@@ -99,11 +111,18 @@ export default {
               tittleAttr: "CSV",
               className: "btn btn-primary",
             },
+
+            {
+              extend: "pdfHtml5",
+              text: "<i class='fas fa-file-pdf'></i> PDF",
+              tittleAttr: "PDF",
+              className: "btn btn-dark",
+            },
             {
               extend: "print",
-              text: "<i class='fas fa-file-csv'></i> print",
-              tittleAttr: "print",
-              className: "btn btn-primary",
+              text: "<i class='fas fa-file-csv'></i> PRINT",
+              tittleAttr: "PRINT",
+              className: "btn btn-info",
             },
           ],
         });

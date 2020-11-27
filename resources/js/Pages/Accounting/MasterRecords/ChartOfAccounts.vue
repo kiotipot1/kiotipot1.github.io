@@ -337,7 +337,11 @@
     </template>
     <!-- Table -->
     <div class="px-6">
-      <table class="table table-striped overflow-auto">
+      <table
+        id="example"
+        class="table table-striped overflow-auto"
+        style="width: 100%"
+      >
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -352,11 +356,11 @@
         <tbody>
           <tr v-for="chart in chart_of_accounts" :key="chart.id">
             <td>{{ chart.id }}</td>
-            <td>{{ chart.general_ledger_account_name }}</td>
+            <td>{{ chart.general_ledger_account_id }}</td>
             <td>{{ chart.account_group }}</td>
             <td>{{ chart.current_noncurrent }}</td>
-            <td>{{ chart.major_account_name }}</td>
-            <td>{{ chart.sub_major_account_name }}</td>
+            <td>{{ chart.major_account_group_id }}</td>
+            <td>{{ chart.sub_major_account_group_id }}</td>
             <td>{{ chart.enable_disable }}</td>
           </tr>
         </tbody>
@@ -374,6 +378,18 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";
+
+import datatables from "datatables.net-bs4";
+require("datatables.net-buttons/js/dataTables.buttons");
+require("datatables.net-buttons/js/buttons.html5");
+
+
+import print from "datatables.net-buttons/js/buttons.print";
+import jszip from "jszip/dist/jszip";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+window.JSZip = jszip;
 
 export default {
   components: {
@@ -393,9 +409,9 @@ export default {
         enable_disable: "",
       },
       general_ledger_accounts: [],
-        general_ledger_account: {
-          general_ledger_account_name: "",
-        },
+      general_ledger_account: {
+        general_ledger_account_name: "",
+      },
       major_account_groups: [],
       major_account_group: {
         major_account_group_name: "",
@@ -406,7 +422,67 @@ export default {
       },
     };
   },
+  // mounted() {
+  //   this.table();
+  // },
+
   methods: {
+    table() {
+      this.$nextTick(() => {
+        $("#example").DataTable({
+          // pagingType: "full_numbers",
+          // order: [[0, "desc"]],
+         // dom: "Bfrtip",
+          processing: true,
+          serverSide: true,
+          ajax: "/api/chart-of-account",
+          columns: [
+            { data: "id" },
+            { data: "general_ledger_account_id" },
+            { data: "account_group" },
+            { data: "current_noncurrent" },
+            { data: "major_account_group_id" },
+            { data: "sub_major_account_group_id" },
+            { data: "enable_disable" },
+          ],
+          // buttons: [
+          //   //"copy", "excel", "pdf"
+          //   // {
+          //   //   extend: "copyHtml5",
+          //   //   text: "copy",
+          //   //   tittleAttr: "copy",
+          //   //   className: "btn btn-secondary",
+          //   // },
+          //   {
+          //     extend: "excelHtml5",
+          //     text: "<i class='fas fa-file-excel'></i> Excel",
+          //     tittleAttr: "copy",
+          //     className: "btn btn-danger",
+          //     filename: "sample",
+          //   },
+          //   // {
+          //   //   extend: "csvHtml5",
+          //   //   text: "<i class='fas fa-file-csv'></i> CSV",
+          //   //   tittleAttr: "CSV",
+          //   //   className: "btn btn-primary",
+          //   // },
+
+          //   {
+          //     extend: "pdfHtml5",
+          //     text: "<i class='fas fa-file-pdf'></i> PDF",
+          //     tittleAttr: "PDF",
+          //     className: "btn btn-dark",
+          //   },
+          //   {
+          //     extend: "print",
+          //     text: "<i class='fas fa-file-csv'></i> PRINT",
+          //     tittleAttr: "PRINT",
+          //     className: "btn btn-info",
+          //   },
+          // ],
+        });
+      });
+    },
     async addChartOfAccounts() {
       try {
         const res = await axios.post(
@@ -419,7 +495,7 @@ export default {
             icon: "success",
             title: res.data,
           });
-          document.getElementById("chart_of_accounts_form").reset;
+          document.getElementById("chart_of_accounts_form").reset();
           $("#ChartOfAccount").modal("hide");
           Fire.$emit("addedChart");
         }
@@ -443,10 +519,10 @@ export default {
             icon: "success",
             title: res.data,
           });
-          this.general_ledger_account= {
-          general_ledger_account_name: "",
-        },
-          $("#GeneralLedgerAccount").modal("hide");
+          (this.general_ledger_account = {
+            general_ledger_account_name: "",
+          }),
+            $("#GeneralLedgerAccount").modal("hide");
           Fire.$emit("addedGeneralLedgerAccount");
         }
       } catch (e) {
@@ -515,6 +591,7 @@ export default {
         .then((res) => {
           this.chart_of_accounts = res.data;
           console.log(this.chart_of_accounts);
+          this.table();
         })
         .catch((err) => {
           console.log(err);
@@ -552,12 +629,13 @@ export default {
     },
   },
   created() {
-    this.getChartOfAccounts(),
-      this.getGeneralLedgerAccount(),
+    // this.getChartOfAccounts(),
+    this.table();
+    this.getGeneralLedgerAccount(),
       this.getMajorAccountGroup(),
       this.getSubMajorAccountGroup(),
       Fire.$on("addedChart", () => {
-        this.getChartOfAccounts();
+        this.table();
       });
     Fire.$on("addedGeneralLedgerAccount", () => {
       this.getGeneralLedgerAccount();
