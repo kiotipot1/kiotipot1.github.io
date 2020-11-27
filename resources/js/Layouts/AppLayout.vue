@@ -153,7 +153,7 @@
                           </li>
                         </ul>
                       </li> -->
-                   
+
                       <li>
                         <jet-dropdown-link
                           :href="route('responsibility-centers')"
@@ -251,7 +251,7 @@
                       >Transactions</a
                     >
                     <ul class="dropdown-menu text-decoration-none">
-                      
+
                       <!-- <li class="dropdown-submenu">
                         <a class="dropdown-item" href="#">Even More..</a>
                         <ul class="dropdown-menu">
@@ -277,7 +277,7 @@
                           </li>
                         </ul>
                       </li> -->
-                    
+
 
                       <li>
                         <jet-dropdown-link
@@ -288,7 +288,7 @@
                           Records SARO Recieved
                         </jet-dropdown-link>
                       </li>
-                      
+
                     </ul>
                   </li>
                 </ul>
@@ -752,6 +752,14 @@ import JetDropdownLink from "@/Jetstream/DropdownLink";
 import JetNavLink from "@/Jetstream/NavLink";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 
+
+import NProgress from 'nprogress'
+import { Inertia } from '@inertiajs/inertia'
+
+NProgress.configure({ showSpinner: false, ease: 'ease', speed: 500 });
+Inertia.on('start', () => NProgress.start())
+Inertia.on('finish', () => NProgress.done())
+
 export default {
   components: {
     JetApplicationMark,
@@ -852,5 +860,10 @@ export default {
   -moz-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px;
   text-decoration: none;
+}
+
+#nprogress .bar {
+  background: #BD2021;
+  height: 3px;
 }
 </style>
