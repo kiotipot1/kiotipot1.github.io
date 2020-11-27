@@ -17,6 +17,7 @@
         <!-- Scripts -->
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="/vendor/datatables/buttons.server-side.js"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia
