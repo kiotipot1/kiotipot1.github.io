@@ -92,6 +92,42 @@
             </div>
           </div>
         </div>
+        <!-- Delete -->
+        <div
+          class="modal fade"
+          id="delete"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="delete"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="delete">Delete</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">Are you Sure You Want To delete?</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- ADD GeneralLedgerAccount MODAL-->
         <div
@@ -351,20 +387,25 @@
             <th scope="col">Major Account Group</th>
             <th scope="col">Sub Major Account Group</th>
             <th scope="col">Enable/Disable</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="chart in chart_of_accounts" :key="chart.id">
+          <tr v-for="chart in dataTables" :key="chart.id">
             <td>{{ chart.id }}</td>
             <td>{{ chart.general_ledger_account_id }}</td>
             <td>{{ chart.account_group }}</td>
             <td>{{ chart.current_noncurrent }}</td>
-            <td>{{ chart.major_account_group_id }}</td>
+            <td>{{ chart.major_account_id }}</td>
             <td>{{ chart.sub_major_account_group_id }}</td>
             <td>{{ chart.enable_disable }}</td>
           </tr>
         </tbody>
       </table>
+
+      <!--$dataTables->table();
+      
+      dataTables->scripts();-->
     </div>
 
     <div class="py-12">
@@ -378,11 +419,10 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";
-
 import datatables from "datatables.net-bs4";
+
 require("datatables.net-buttons/js/dataTables.buttons");
 require("datatables.net-buttons/js/buttons.html5");
-
 
 import print from "datatables.net-buttons/js/buttons.print";
 import jszip from "jszip/dist/jszip";
@@ -399,6 +439,7 @@ export default {
   data() {
     return {
       enable_disable: ["enable", "disable"],
+
       chart_of_accounts: [],
       chart_of_account: {
         general_ledger_account: "",
@@ -425,16 +466,18 @@ export default {
   // mounted() {
   //   this.table();
   // },
+  props: ["dataTables"],
 
   methods: {
     table() {
       this.$nextTick(() => {
         $("#example").DataTable({
           // pagingType: "full_numbers",
-          // order: [[0, "desc"]],
-         // dom: "Bfrtip",
+          order: [[0, "desc"]],
+          //dom: "Bfrtip",
           processing: true,
           serverSide: true,
+          responsive: true,
           ajax: "/api/chart-of-account",
           columns: [
             { data: "id" },
@@ -444,6 +487,18 @@ export default {
             { data: "major_account_group_id" },
             { data: "sub_major_account_group_id" },
             { data: "enable_disable" },
+            // {
+            //   data: "action",
+            //   name: "chartofaccounts.action",
+            //   orderable: false,
+            //   searchable: false,
+            // },
+            {
+              data: "action",
+              name: "action",
+              orderable: false,
+              searchable: false,
+            },
           ],
           // buttons: [
           //   //"copy", "excel", "pdf"
@@ -496,6 +551,7 @@ export default {
             title: res.data,
           });
           document.getElementById("chart_of_accounts_form").reset();
+          $("#example").DataTable().destroy();
           $("#ChartOfAccount").modal("hide");
           Fire.$emit("addedChart");
         }
@@ -585,13 +641,16 @@ export default {
     },
 
     //get data functions
+    show() {
+      // $("#edit").click(console.log("yawa"));
+      console.log("yawa");
+    },
     async getChartOfAccounts() {
       const res = await axios
         .get("/api/chart-of-account")
         .then((res) => {
           this.chart_of_accounts = res.data;
           console.log(this.chart_of_accounts);
-          this.table();
         })
         .catch((err) => {
           console.log(err);
@@ -630,6 +689,7 @@ export default {
   },
   created() {
     // this.getChartOfAccounts(),
+    console.log(this.dataTables);
     this.table();
     this.getGeneralLedgerAccount(),
       this.getMajorAccountGroup(),

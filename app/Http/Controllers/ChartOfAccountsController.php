@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChartOfAccountsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\DataTables\ChartOfAccountDataTable;
+use App\DataTables\ChartOfAccountsDataTable;
 
 class ChartOfAccountsController extends Controller
 {
@@ -14,7 +14,7 @@ class ChartOfAccountsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ChartOfAccountDataTable $datatable)
+    public function index(ChartOfAccountsDataTable $datatable)
     {
         //return ChartOfAccountsModel::all();
 
@@ -28,7 +28,7 @@ class ChartOfAccountsController extends Controller
             
         //     ->get();
 
-            return $datatable->render('chart_of_accounts');
+            return $datatable->render('chartofaccounts');
       
             // $users = DB::table('users')->paginate(15);
 
@@ -94,6 +94,6 @@ class ChartOfAccountsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

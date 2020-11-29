@@ -8,8 +8,17 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 window.$ = window.jquery = require('jquery')
+
 require('bootstrap')
 require('popper.js');
+require('datatables.net-bs4');
+require('datatables.net-buttons-bs4');
+// require('datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')
+// require("datatables.net/js/jquery.dataTables.min.js");
+// require("datatables.net-buttons/js/dataTables.buttons");
+
+// require("datatables.net-buttons/js/buttons.html5");
+  require ('../../public/vendor/datatables/buttons.server-side');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
