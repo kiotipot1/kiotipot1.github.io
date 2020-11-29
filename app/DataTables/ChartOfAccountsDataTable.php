@@ -25,30 +25,21 @@ class ChartOfAccountsDataTable extends DataTable
 
             ->addColumn('action', function ($row) {
                 // return '
-                        
+
                 //         <button  class="btn btn-primary"  v-on:click=say("hi")>Update</button>
                 //         <a class="btn btn-success" id="edit-user" data-toggle="modal" data-info=' . $row . '>Edit </a>
                 //         <button type="button" class="btn btn-danger"  data-toggle="modal"
-                      
-                        
-                        
-                                                
-                        
-                        
-                //         ';
 
-                
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
-                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
-                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm" @click=show()>Delete</a>';
-         
-                            return $btn;
+                // para more readable imo code bai
+                $btn = <<<JS
+                    <a href="javascript:void(0)" class="edit btn btn-info btn-sm">Views</a>
+                    <a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>
+                    <a href="javascript:void(0)" class="edit btn btn-danger btn-sm" @click="show()">Delete</a>
+                JS;
+
+                return $btn;
             })
-            ->rawColumns(['action'])
-           
-            
-            ;
-
+            ->rawColumns(['action']);
     }
     /**
      * Get query source of dataTable.
