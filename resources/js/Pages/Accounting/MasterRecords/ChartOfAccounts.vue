@@ -391,16 +391,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="chart in dataTables" :key="chart.id">
+          <tr v-for="chart in chart_of_accounts" :key="chart.id">
             <td>{{ chart.id }}</td>
-            <td>{{ chart.general_ledger_account_id }}</td>
+            <td>{{ chart.general_ledger_account_name }}</td>
             <td>{{ chart.account_group }}</td>
             <td>{{ chart.current_noncurrent }}</td>
-            <td>{{ chart.major_account_id }}</td>
-            <td>{{ chart.sub_major_account_group_id }}</td>
+            <td>{{ chart.major_account_name }}</td>
+            <td>{{ chart.sub_major_account_name }}</td>
             <td>{{ chart.enable_disable }}</td>
           </tr>
         </tbody>
+        
       </table>
 
       <!--$dataTables->table();
@@ -430,6 +431,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 window.JSZip = jszip;
+$("#show").click(function () {});
 
 export default {
   components: {
@@ -466,7 +468,6 @@ export default {
   // mounted() {
   //   this.table();
   // },
-  props: ["dataTables"],
 
   methods: {
     table() {
@@ -475,10 +476,17 @@ export default {
           // pagingType: "full_numbers",
           order: [[0, "desc"]],
           //dom: "Bfrtip",
+          lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"],
+          ],
           processing: true,
           serverSide: true,
           responsive: true,
-          ajax: "/api/chart-of-account",
+          ajax: {
+            url:"/api/chart-of-account"
+        
+          },
           columns: [
             { data: "id" },
             { data: "general_ledger_account_id" },
@@ -499,6 +507,7 @@ export default {
               orderable: false,
               searchable: false,
             },
+
           ],
           // buttons: [
           //   //"copy", "excel", "pdf"
@@ -591,10 +600,7 @@ export default {
     },
     async addMajorAccountGroup() {
       try {
-        const res = await axios.post(
-          "/api/major-account-group",
-          this.major_account_group
-        );
+        const res = await axios.post("/api/get", this.major_account_group);
         console.log(res);
         if (res.status === 201) {
           Toast.fire({
@@ -617,7 +623,7 @@ export default {
     async addSubMajorAccountGroup() {
       try {
         const res = await axios.post(
-          "/api/sub-major-account-group",
+          "/api/chart",
           this.sub_major_account_group
         );
         console.log(res);
@@ -641,10 +647,7 @@ export default {
     },
 
     //get data functions
-    show() {
-      // $("#edit").click(console.log("yawa"));
-      console.log("yawa");
-    },
+
     async getChartOfAccounts() {
       const res = await axios
         .get("/api/chart-of-account")
@@ -688,14 +691,13 @@ export default {
     },
   },
   created() {
-    // this.getChartOfAccounts(),
-    console.log(this.dataTables);
+    // this.getChartOfAccounts(), console.log(this.dataTables);
     this.table();
     this.getGeneralLedgerAccount(),
       this.getMajorAccountGroup(),
       this.getSubMajorAccountGroup(),
       Fire.$on("addedChart", () => {
-        this.table();
+        // this.table();
       });
     Fire.$on("addedGeneralLedgerAccount", () => {
       this.getGeneralLedgerAccount();

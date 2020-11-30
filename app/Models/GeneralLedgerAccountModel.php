@@ -15,4 +15,7 @@ class GeneralLedgerAccountModel extends Model
         'general_ledger_account_name',
     ];
     
+    public function chartOfAccount(){
+        return $this->hasMany(ChartOfAccountsModel::class,'general_ledger_account_id','id');
+    }    
 }

@@ -13,4 +13,10 @@ class MajorAccountGroupModel extends Model
     protected $fillable = [
         'major_account_name',
     ];
+    
+    public function chartOfAccount()
+    {
+        return $this->hasMany(ChartOfAccountsModel::class,'major_account_group_id','id');
+    }
+
 }

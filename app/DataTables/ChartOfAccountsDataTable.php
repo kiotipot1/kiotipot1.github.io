@@ -24,26 +24,26 @@ class ChartOfAccountsDataTable extends DataTable
             ->eloquent($query)
 
             ->addColumn('action', function ($row) {
-                // return '
+                return '
                         
-                //         <button  class="btn btn-primary"  v-on:click=say("hi")>Update</button>
-                //         <a class="btn btn-success" id="edit-user" data-toggle="modal" data-info=' . $row . '>Edit </a>
-                //         <button type="button" class="btn btn-danger"  data-toggle="modal"
+                        <button  class="btn btn-primary"  v-on:click=say("hi")>Update</button>
+                        <a class="btn btn-success" id="edit-user" data-toggle="modal" data-info=' . $row . '>Edit </a>
+                        <button type="button" class="btn btn-danger"  data-toggle="modal" id="show">delete</button>
                       
                         
+                      
+                      
                         
-                                                
-                        
-                        
-                //         ';
+                        ';
 
                 
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
-                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
-                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm" @click=show()>Delete</a>';
+                        //    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
+                        //    $btn = $btn.'<button  class="edit btn btn-primary btn-sm"  data-toggle="modal" data-target="delete">Edit</button>';
+                        //    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm" @click=show()>Delete</a>';
          
-                            return $btn;
+                        //     return $btn;
             })
+         
             ->rawColumns(['action'])
            
             

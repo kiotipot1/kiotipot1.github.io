@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\ChartOfAccountsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\ChartOfAccountsDataTable;
+use App\Exports\ChartOfAccountExport;
 
 class ChartOfAccountsController extends Controller
 {
@@ -16,7 +18,11 @@ class ChartOfAccountsController extends Controller
      */
     public function index(ChartOfAccountsDataTable $datatable)
     {
-        //return ChartOfAccountsModel::all();
+        // return ChartOfAccountsModel::all();
+
+        $chart = ChartOfAccountsModel::with('generalLedgerAccount', 'majorAccountGroup', 'subMajorAccountGroup')
+      
+            ->get();
 
 
 
@@ -24,13 +30,14 @@ class ChartOfAccountsController extends Controller
         //     ->join('general_ledger_account', 'chart_of_accounts.general_ledger_account_id', '=', 'general_ledger_account.id')
         //     ->join('major_account_group', 'chart_of_accounts.major_account_group_id', '=', 'major_account_group.id')
         //     ->join('sub_major_account_group', 'chart_of_accounts.sub_major_account_group_id', '=', 'sub_major_account_group.id')
-        //     ->select('chart_of_accounts.*', 'general_ledger_account.general_ledger_account_name', 'major_account_group.major_account_name', 'sub_major_account_group.sub_major_account_name')
-            
-        //     ->get();
+        //     ->select('chart_of_accounts.account_group', 'general_ledger_account.general_ledger_account_name', 'major_account_group.major_account_name', 'sub_major_account_group.sub_major_account_name')
 
-            return $datatable->render('chartofaccounts');
-      
-            // $users = DB::table('users')->paginate(15);
+        //     ->get();
+        // dd($chart);
+        return $chart;
+        // return $datatable->render('chartofaccounts');
+
+        // $users = DB::table('users')->paginate(15);
 
         // return view('chartofaccounts.index', ['chartofaccounts' => $chart_of_accounts]);
     }
@@ -49,7 +56,7 @@ class ChartOfAccountsController extends Controller
             'account_group' => 'required',
             'current_noncurrent' => 'required',
             'sub_major_account_group' => 'required',
-            'enable_disable'=>'required',
+            'enable_disable' => 'required',
 
         ]);
         $chart_of_account = new ChartOfAccountsModel();
@@ -58,7 +65,7 @@ class ChartOfAccountsController extends Controller
         $chart_of_account->current_noncurrent = $request->current_noncurrent;
         $chart_of_account->major_account_group_id = $request->major_account_group;
         $chart_of_account->sub_major_account_group_id = $request->sub_major_account_group;
-        $chart_of_account->enable_disable=$request->enable_disable;
+        $chart_of_account->enable_disable = $request->enable_disable;
         $chart_of_account->save();
         return response('Successfuly added the data', 201);
     }
@@ -94,6 +101,10 @@ class ChartOfAccountsController extends Controller
      */
     public function destroy($id)
     {
-        
+    }
+
+    public function export()
+    {
+        return Excel::download(new ChartOfAccountExport, 'chart_of_accounts.xlsx');
     }
 }

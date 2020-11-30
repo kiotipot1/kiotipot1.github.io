@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/chart/export', 'ChartExportController@export');
+// Route::get('chart/export', [ChartOfAccountsController::class, 'export']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');

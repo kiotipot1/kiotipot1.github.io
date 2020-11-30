@@ -14,4 +14,9 @@ class SubMajorAccountGroupModel extends Model
     protected $fillable = [
         'sub_major_account_group_name',
     ];
+
+    public function chartOfAccount()
+    {
+        return $this->hasMany(ChartOfAccountsModel::class,'sub_major_account_group_id','id');
+    }
 }
